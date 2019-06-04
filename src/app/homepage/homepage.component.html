@@ -1,0 +1,20 @@
+<ul>
+  <li *ngFor="let result of searchResults; index as i;">
+    <ul>
+      <li *ngFor="let subcategories of result.subcategories; index as i;">
+          <ul>
+              <li *ngFor="let products of subcategories.items; index as i;">
+                  <p>price is: {{products.price}}</p>
+                  <img width=50 [src]="products.imagelink" /> 
+                  <h4>{{products.name}}</h4>
+                <p> category is: {{products.category}}</p> 
+                <p> rating is: {{products.rating}}</p> 
+                <p> stock is: {{products.stock}}</p> 
+                <p> sub category is: {{products.category}}</p> 
+            </li>
+          </ul>
+    </li>
+  </ul>
+  
+  </li>
+</ul>

@@ -11,15 +11,11 @@ import {ProductsDataService} from './products-data.service';
 })
 
 export class AppComponent implements OnInit {
+// tslint:disable-next-line: no-shadowed-variable
   constructor(private ProductsDataService: ProductsDataService) {
 
   }
   title = 'app is functional!';
   ngOnInit() {
-    this.ProductsDataService.prodData('angular').then( (response) => {
-      alert('Total Libraries Found:' + response[0].category);
-    }, (error) => {
-      alert('Error: ' + error.statusText);
-    });
   }
 }
