@@ -1,7 +1,5 @@
-<ul>
-  <li *ngFor="let result of searchResults; index as i;">
-    <ul>
-      <li *ngFor="let subcategories of result.subcategories; index as i;">
+  <div *ngFor="let result of searchResults; index as i;">
+      <div *ngFor="let subcategories of result.subcategories; index as i;">
           <ul>
               <li *ngFor="let products of subcategories.items; index as i;">
                   <p>price is: {{products.price}}</p>
@@ -10,11 +8,8 @@
                 <p> category is: {{products.category}}</p> 
                 <p> rating is: {{products.rating}}</p> 
                 <p> stock is: {{products.stock}}</p> 
-                <p> sub category is: {{products.category}}</p> 
+                <p> sub category is: {{products.subcategory}}</p> 
             </li>
           </ul>
-    </li>
-  </ul>
-  
-  </li>
-</ul>
+      </div>
+    </div>
