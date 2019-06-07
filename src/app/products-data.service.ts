@@ -6,17 +6,11 @@ import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class ProductsDataService {
-  cachedValues: Array<{
-    [query: string]: ProdApi
-  }> = [];
   constructor(private http: HttpClient) {
   }
 
-  prodData = (query: string): Promise<ProdApi> => {
+  prodData = (): Promise<ProdApi> => {
     const promise = new Promise<ProdApi>((resolve, reject) => {
-        if (this.cachedValues[query]) {
-            resolve(this.cachedValues[query]);
-        } else {
             this.http.get('https://webmppcapstone.blob.core.windows.net/data/itemsdata.json')
             .toPromise()
             .then( (response) => {
@@ -24,7 +18,6 @@ export class ProductsDataService {
             }, (error) => {
                 reject(error);
             });
-        }
     });
     return promise;
   }
