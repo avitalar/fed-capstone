@@ -1,7 +1,10 @@
-<div *ngIf="favoriteItems; else elseBlock">
-<div *ngFor="let fav of favoriteItems; index as i;">                    
+<div *ngIf="featuredItem; else elseBlock">
+    <h1>Soon to be a carousel of top rated products that are cheaper than 3$ !</h1> 
+    <ul>
+<li *ngFor="let fav of featuredItem; index as i;">                    
   <h4>{{fav.name}}</h4>
-</div>
+</li>
+</ul>
 </div>
 <ng-template #elseBlock>Loading...</ng-template>
 

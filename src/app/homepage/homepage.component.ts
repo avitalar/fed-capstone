@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ProductsDataService} from '../products-data.service';
 import { ProdApi } from '../prod-api';
+import { element } from 'protractor';
 
 
 @Component({
@@ -22,21 +23,23 @@ export class HomepageComponent implements OnInit {
     this.ProductsDataService.prodData().then( (response) => {
       this.searchResults = response;
       // populate favorites array
-
-
-
-// tslint:disable-next-line: max-line-length
-      this.featuredItem = [response[1].subcategories[0].items[0], response[1].subcategories[1].items[0], response[0].subcategories[2].items[1], response[1].subcategories[2].items[3], response[0].subcategories[1].items[1], response[0].subcategories[2].items[2], response[0].subcategories[1].items[1], response[0].subcategories[1].items[2], response[2].subcategories[1].items[2], response[2].subcategories[1].items[2], response[3].subcategories[1].items[1], response[0].subcategories[1].items[2]];
-      let i = 0;
-      this.featuredItem.forEach(element => {
-        i++;
-        if (element != null) {
-          if (this.favoriteItems.indexOf(element) < 0) { // check if already exist in array to prevent duplicates
-            this.favoriteItems.push(element);
-          }
-      } else {
-      }
+      const allProducts = [];
+      response.forEach(category => {
+        category.subcategories.forEach(subcategory => {
+          subcategory.items.forEach(item => {
+            allProducts.push(item);
+          });
+        });
       });
+      console.log(allProducts.length);
+
+      // for featured carousel - choose all products that are top rated and their price is lower than 3$
+      allProducts.forEach(el => {
+        if ((el.rating >= 5) && (el.price < 3)) {
+        this.featuredItem.push(el);
+        }
+      });
+
     }, (error) => {
       console.log('Error: ' + error.statusText);
     });
