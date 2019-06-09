@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import {ProductsDataService} from './products-data.service';
 import { AppComponent } from './app.component';
 import { HomepageComponent } from './homepage/homepage.component';
+import { OwlModule } from 'ngx-owl-carousel';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,8 @@ import { HomepageComponent } from './homepage/homepage.component';
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    OwlModule
   ],
   providers: [ProductsDataService],
   bootstrap: [AppComponent]

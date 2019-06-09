@@ -1,12 +1,13 @@
-<div *ngIf="featuredItem; else elseBlock">
-    <h1>Soon to be a carousel of top rated products that are cheaper than 3$ !</h1> 
-    <ul>
-<li *ngFor="let fav of featuredItem; index as i;">                    
-  <h4>{{fav.name}}</h4>
-</li>
-</ul>
+
+
+<owl-carousel
+[options]="{items: 3, dots: false, navigation: false}"
+[items]="featuredItem"
+[carouselClasses]="['owl-theme', 'row', 'sliding']">
+<div class="item" *ngFor="let featured of featuredItem;let i = index">
+    <h4>{{featured.name}}</h4>
 </div>
-<ng-template #elseBlock>Loading...</ng-template>
+</owl-carousel>
 
 <!-- <div *ngIf="searchResults; else elseBlock">
   <div *ngFor="let result of searchResults;">
