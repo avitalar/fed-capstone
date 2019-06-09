@@ -24,14 +24,15 @@ export class HomepageComponent implements OnInit {
       this.searchResults = response;
       // populate favorites array
       const allProducts = [];
-      response.forEach(category => {
-        category.subcategories.forEach(subcategory => {
+      const responseArray = [];
+      responseArray.push(this.searchResults);
+      responseArray[0].forEach(category => {
+         category.subcategories.forEach(subcategory => {
           subcategory.items.forEach(item => {
-            allProducts.push(item);
+           allProducts.push(item);
           });
-        });
+       });
       });
-      console.log(allProducts.length);
 
       // for featured carousel - choose all products that are top rated and their price is lower than 3$
       allProducts.forEach(el => {
