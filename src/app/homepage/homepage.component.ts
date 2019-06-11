@@ -2,12 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import {ProductsDataService} from '../products-data.service';
 import { ProdApi } from '../prod-api';
 import { element } from 'protractor';
+import { ViewEncapsulation } from '@angular/core';
 
 
 @Component({
   selector: 'app-homepage',
   templateUrl: './homepage.component.html',
-  styleUrls: ['./homepage.component.css']
+  styleUrls: ['./homepage.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class HomepageComponent implements OnInit {
   searchResults: ProdApi;
