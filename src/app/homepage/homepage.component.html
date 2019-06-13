@@ -1,12 +1,13 @@
 <div *ngIf="featuredItem; else elseBlock">
 <div class="container">
 <owl-carousel
-[options]="{items: 5, dots: false, navigation: true}"
+[options]="{items: 5, dots: true, navigation: true}"
 [items]="featuredItem"
 [carouselClasses]="['owl-theme']">
 <div class="item" *ngFor="let featured of featuredItem;let i = index">
     <h5>{{featured.name}}</h5>
 <div class="featuredImgWrapper"><img [src]="featured.imagelink" />
+<!-- <div class="featuredImgWrapper"><img (load)="dosomething($event)" [src]="featured.imagelink" /> -->
   <div class="overlay"><p>{{featured.description}}</p></div>
  </div>
     <p>price is: ${{featured.price}}</p>
