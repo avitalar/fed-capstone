@@ -5,6 +5,7 @@ import {ProductsDataService} from './products-data.service';
 import { AppComponent } from './app.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { OwlModule } from 'ngx-owl-carousel';
+import {NgxImageCompressService} from 'ngx-image-compress';
 
 
 
@@ -18,7 +19,7 @@ import { OwlModule } from 'ngx-owl-carousel';
     HttpClientModule,
     OwlModule
   ],
-  providers: [ProductsDataService],
+  providers: [ProductsDataService,NgxImageCompressService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

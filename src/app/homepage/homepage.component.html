@@ -1,20 +1,32 @@
-<div *ngIf="featuredItem; else elseBlock">
+<div *ngIf="featuredItem.length > 1; else elseBlock">
 <div class="container">
 <owl-carousel
-[options]="{items: 5, dots: true, navigation: true}"
+[options]="{items: 5, dots: true, nav: true}"
 [items]="featuredItem"
 [carouselClasses]="['owl-theme']">
 <div class="item" *ngFor="let featured of featuredItem;let i = index">
     <h5>{{featured.name}}</h5>
+    <button (click)="addToCart(featured)">Add to Cart</button>
+
 <div class="featuredImgWrapper"><img [src]="featured.imagelink" />
 <!-- <div class="featuredImgWrapper"><img (load)="dosomething($event)" [src]="featured.imagelink" /> -->
-  <div class="overlay"><p>{{featured.description}}</p></div>
+  <div class="overlay">
+    <p>{{featured.description}}</p>  
+  </div>
  </div>
     <p>price is: ${{featured.price}}</p>
 </div>
 </owl-carousel>
 </div>
 <ng-template #elseBlock>Loading...</ng-template>
+<div *ngIf="cartArray; else elseBlock">
+    <div class="item" *ngFor="let cartItem of cartArray;let i = index">
+      <ul>
+        <li>{{cartItem.name}} </li>
+      </ul>
+</div>
+  
+</div>
 
 <!-- <div *ngIf="searchResults; else elseBlock">
   <div *ngFor="let result of searchResults;">

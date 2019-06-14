@@ -3,7 +3,8 @@ import {ProductsDataService} from '../products-data.service';
 import { ProdApi } from '../prod-api';
 import { element } from 'protractor';
 import { ViewEncapsulation } from '@angular/core';
-
+import {NgxImageCompressService} from 'ngx-image-compress';
+import {DOC_ORIENTATION} from 'ngx-image-compress/lib/image-compress';
 
 @Component({
   selector: 'app-homepage',
@@ -16,15 +17,40 @@ export class HomepageComponent implements OnInit {
   favorites: Array<object> = [];
   favoriteItems: Array<object> = [];
   featuredItem: Array<object> = [];
+  cartArray: Array<object> = [];
   element: Array<object> = [];
   imgObject: object;
 
 // tslint:disable-next-line: no-shadowed-variable
-  constructor(private ProductsDataService: ProductsDataService) {   }
+  constructor(private ProductsDataService: ProductsDataService, private imageCompress: NgxImageCompressService) {   }
+
+  imgResultBeforeCompress: string;
+  imgResultAfterCompress: string;
+
+  addToCart(addToCartObject) {
+    this.cartArray.push(addToCartObject);
+  }
+  compressFile() {
+
+    this.imageCompress.uploadFile().then(({image, orientation}) => {
+
+      this.imgResultBeforeCompress = image;
+      console.warn('Size in bytes was:', this.imageCompress.byteCount(image));
+
+      this.imageCompress.compressFile(image, orientation, 50, 50).then(
+        result => {
+          this.imgResultAfterCompress = result;
+          console.warn('Size in bytes is now:', this.imageCompress.byteCount(result));
+        }
+      );
+
+    });
+
+  }
 
   ngOnInit() {
-
-    this.ProductsDataService.prodData().then( (response) => {
+console.log(this.featuredItem);
+this.ProductsDataService.prodData().then( (response) => {
       this.searchResults = response;
       // populate favorites array
       const allProducts = [];
