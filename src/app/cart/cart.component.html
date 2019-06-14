@@ -1,0 +1,9 @@
+<p>
+  cart works!
+</p>
+<div *ngIf="cartArray; else elseBlockCart">
+    <div class="item" *ngFor="let cartItem of cartArray;let i = index">
+      <ul>
+        <li>{{cartItem.name}} </li>
+      </ul>
+<ng-template #elseBlockCart>Loading...</ng-template>

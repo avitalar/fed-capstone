@@ -19,12 +19,7 @@
 </owl-carousel>
 </div>
 <ng-template #elseBlock>Loading...</ng-template>
-<div *ngIf="cartArray; else elseBlock">
-    <div class="item" *ngFor="let cartItem of cartArray;let i = index">
-      <ul>
-        <li>{{cartItem.name}} </li>
-      </ul>
-</div>
+
   
 </div>
 

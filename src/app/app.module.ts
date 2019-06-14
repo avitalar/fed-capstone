@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { OwlModule } from 'ngx-owl-carousel';
 import {NgxImageCompressService} from 'ngx-image-compress';
+import { CartComponent } from './cart/cart.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomepageComponent
+    HomepageComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
