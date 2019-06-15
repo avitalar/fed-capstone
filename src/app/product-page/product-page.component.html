@@ -1,3 +1,14 @@
 <p>
   product-page works!
 </p>
+<div *ngFor="let product of productArray;">
+  <a [routerLink]="['/product/' + product.name]">add to cart</a>
+  <p>price is: {{product.price}}</p>
+    <img width=50 [src]="product.imagelink" /> 
+    <h4>{{product.name}}</h4>
+  <p> category is: {{product.category}}</p> 
+  <p> rating is: {{product.rating}}</p> 
+  <p> stock is: {{product.stock}}</p> 
+  <p> sub category is: {{product.subcategory}}</p>      
+ 
+</div>

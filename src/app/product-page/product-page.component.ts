@@ -13,7 +13,7 @@ export class ProductPageComponent implements OnInit {
   itemName: string;
   allProducts: Array<object> = [];
   searchResults: ProdApi;
-  product: object;
+  productArray: Array<object> = [];
 
   constructor(private ProductsDataService: ProductsDataService,private route: ActivatedRoute, private router: Router) {   }
 
@@ -30,7 +30,7 @@ export class ProductPageComponent implements OnInit {
       this.searchResults = response;
       // populate favorites array
       const responseArray = [];
-      const allProducts = [];
+      let allProducts = [];
       responseArray.push(this.searchResults);
       responseArray[0].forEach(category => {
          category.subcategories.forEach(subcategory => {
@@ -40,11 +40,13 @@ export class ProductPageComponent implements OnInit {
        });
       });
 
+      allProducts = this.allProducts;
       allProducts.forEach(el => {
-        if ((el.rating >= 5) && (el.price < 3) && (el.name !== 'Popcorn')) {
-        this.product = el;
+        if (el.name === this.itemName) {
+        this.productArray.push(el);
         }
       });
+      console.log(this.productArray);
 
 }, (error) => {
   console.log('Error: ' + error.statusText);
