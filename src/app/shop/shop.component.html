@@ -8,15 +8,15 @@
           [collectionSize]="allProducts.length"></ngb-pagination>   
 <div *ngIf="allProducts; else elseBlock" class="row">
                 
-            <div class="col-md-4 item" *ngFor="let products of allProducts | slice: ((page-1) * pageSize) : ((page-1) * pageSize) + pageSize;">
-              
-              <p>price is: {{products.price}}</p>
-                <img width=50 [src]="products.imagelink" /> 
-                <h4>{{products.name}}</h4>
-              <p> category is: {{products.category}}</p> 
-              <p> rating is: {{products.rating}}</p> 
-              <p> stock is: {{products.stock}}</p> 
-              <p> sub category is: {{products.subcategory}}</p>      
+            <div class="col-md-4 item" *ngFor="let product of allProducts | slice: ((page-1) * pageSize) : ((page-1) * pageSize) + pageSize;">
+              <a [routerLink]="['/product/' + product.name]">add to cart</a>
+              <p>price is: {{product.price}}</p>
+                <img width=50 [src]="product.imagelink" /> 
+                <h4>{{product.name}}</h4>
+              <p> category is: {{product.category}}</p> 
+              <p> rating is: {{product.rating}}</p> 
+              <p> stock is: {{product.stock}}</p> 
+              <p> sub category is: {{product.subcategory}}</p>      
              
             </div>
           

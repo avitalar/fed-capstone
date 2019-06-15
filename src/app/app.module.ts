@@ -11,6 +11,7 @@ import { ShopComponent } from './shop/shop.component';
 import { RouterModule, Routes } from '@angular/router';
 import { NotFoundComponentComponent } from './not-found-component/not-found-component.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { ProductPageComponent } from './product-page/product-page.component';
 
 
 const appRoutes: Routes = [
@@ -22,6 +23,12 @@ const appRoutes: Routes = [
     data: {
       title: 'Shop page'
     }
+  },
+  { path: 'product/:productName',
+  component: ProductPageComponent,
+  data: {
+    title: 'Product page'
+  }
   },
   { path: 'cart',
     component: CartComponent,
@@ -38,7 +45,8 @@ const appRoutes: Routes = [
     HomepageComponent,
     CartComponent,
     ShopComponent,
-    NotFoundComponentComponent
+    NotFoundComponentComponent,
+    ProductPageComponent
 
   ],
   imports: [
