@@ -10,6 +10,8 @@ import { CartComponent } from './cart/cart.component';
 import { ShopComponent } from './shop/shop.component';
 import { RouterModule, Routes } from '@angular/router';
 import { NotFoundComponentComponent } from './not-found-component/not-found-component.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
 
 const appRoutes: Routes = [
   { path: '',
@@ -45,7 +47,8 @@ const appRoutes: Routes = [
     OwlModule,
     RouterModule.forRoot(
       appRoutes
-    )
+    ),
+    NgbModule
   ],
   providers: [ProductsDataService,NgxImageCompressService],
   bootstrap: [AppComponent]

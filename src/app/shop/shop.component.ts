@@ -10,6 +10,9 @@ import { ProdApi } from '../prod-api';
 export class ShopComponent implements OnInit {
   searchResults: ProdApi;
   allProducts: Array<object> = [];
+  page = 1;
+  pageSize = 9;
+
 
 
   constructor(private ProductsDataService: ProductsDataService) {   }

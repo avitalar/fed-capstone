@@ -1,6 +1,8 @@
 .sideMenu {
     background-color: darkblue;
 }
-.products {
-    background-color: red;
+.products .item {
+    border: 1px solid #000;
+    min-height: 343px;
+    margin-top: 20px;
 }
