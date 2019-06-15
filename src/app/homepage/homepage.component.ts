@@ -17,13 +17,13 @@ export class HomepageComponent implements OnInit {
   featuredItem: Array<object> = [];
   element: Array<object> = [];
   imgObject: object;
-  cartArray = cartArray;
 
 // tslint:disable-next-line: no-shadowed-variable
   constructor(private ProductsDataService: ProductsDataService) {   }
 
   addToCart(addToCartObject) {
     cartArray.push(addToCartObject);
+    localStorage.setItem('cart', JSON.stringify(cartArray));
     console.log(cartArray);
   }
 

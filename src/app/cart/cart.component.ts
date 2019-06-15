@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { cartArray } from '../globals';
 
 @Component({
   selector: 'app-cart',
@@ -7,9 +6,9 @@ import { cartArray } from '../globals';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
-  cartArray = cartArray;
-  constructor() { }
 
+  constructor() { }
+  cartArray: Array<object> = JSON.parse(localStorage.getItem('cart'));
   ngOnInit() {
   }
 
