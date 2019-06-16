@@ -12,6 +12,8 @@ export class ShopComponent implements OnInit {
   allProducts: Array<object> = [];
   page = 1;
   pageSize = 9;
+  idCat = 1;
+  public isCollapsed: boolean[] = [];
 
 
 

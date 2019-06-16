@@ -1,8 +1,28 @@
 <div class="container">
     <div class="row">
-      <div class="sideMenu col-md-3"></div>
+      <div class="sideMenu col-md-3">
+        <div *ngFor="let result of searchResults; index as i;">
+          <div>
+              <button type="button" class="btn btn-outline-primary" (click)="isCollapsed[i] = !isCollapsed[i]"
+            [attr.aria-expanded]="!isCollapsed[i]" [attr.aria-controls]="'collapse'+i">
+            <p><strong>{{result.category}}</strong></p>
+    </button>
+            <div *ngFor="let subcategory of result.subcategories">
+          <div [attr.id]="'collapse'+i" [ngbCollapse]="!isCollapsed[i]">
+              <div >
+                <div >
+                    <p>{{subcategory.name}}</p>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+
+      </div>
       <div class="products col-md-9">
-          <pre>Current page: {{page}}</pre>          <ngb-pagination
+          <pre>Current page: {{page}}</pre>         
+          <ngb-pagination
           [(page)]="page"
           [pageSize]="pageSize"
           [collectionSize]="allProducts.length"></ngb-pagination>   
