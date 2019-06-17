@@ -9,9 +9,9 @@
     </button>
             <div *ngFor="let subcategory of result.subcategories">
           <div [attr.id]="'collapse'+i" [ngbCollapse]="!isCollapsed[i]">
-              <div >
-                <div >
-                    <p>{{subcategory.name}}</p>
+              <div>
+                <div>
+                    <a (click)="alert(subcategory.name);">{{subcategory.name}}</a>
                   </div>
               </div>
             </div>
@@ -28,7 +28,7 @@
           [collectionSize]="allProducts.length"></ngb-pagination>   
 <div *ngIf="allProducts; else elseBlock" class="row">
                 
-            <div class="col-md-4 item" *ngFor="let product of allProducts | slice: ((page-1) * pageSize) : ((page-1) * pageSize) + pageSize;">
+            <div class="col-md-4 item" *ngFor="let product of allProducts | subcategoryFilter:subcategoryFilterArgs | slice: ((page-1) * pageSize) : ((page-1) * pageSize) + pageSize;">
               <a [routerLink]="['/product/' + product.name]">add to cart</a>
               <p>price is: {{product.price}}</p>
                 <img width=50 [src]="product.imagelink" /> 
@@ -36,8 +36,7 @@
               <p> category is: {{product.category}}</p> 
               <p> rating is: {{product.rating}}</p> 
               <p> stock is: {{product.stock}}</p> 
-              <p> sub category is: {{product.subcategory}}</p>      
-             
+              <p> sub category is: {{product.subcategory}}</p>               
             </div>
           
 

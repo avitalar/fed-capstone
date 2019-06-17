@@ -14,7 +14,12 @@ export class ShopComponent implements OnInit {
   pageSize = 9;
   idCat = 1;
   public isCollapsed: boolean[] = [];
+  subcategoryFilterArgs = {subcategoryClick: ''};
 
+  alert = (name: string) => {
+    console.log('itemName: ' + name);
+    this.subcategoryFilterArgs.subcategoryClick = name;
+  }
 
 
   constructor(private ProductsDataService: ProductsDataService) {   }
