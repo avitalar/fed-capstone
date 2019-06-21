@@ -28,7 +28,7 @@
           [collectionSize]="allProducts.length"></ngb-pagination>   
 <div *ngIf="allProducts; else elseBlock" class="row">
                 
-            <div class="col-md-4 item" *ngFor="let product of allProducts | subcategoryFilter:subcategoryFilterArgs | slice: ((page-1) * pageSize) : ((page-1) * pageSize) + pageSize;">
+            <div class="col-md-4 item" *ngFor="let product of allProducts | subcategoryFilter:filterString | slice: ((page-1) * pageSize) : ((page-1) * pageSize) + pageSize;">
               <a [routerLink]="['/product/' + product.name]">add to cart</a>
               <p>price is: {{product.price}}</p>
                 <img width=50 [src]="product.imagelink" /> 

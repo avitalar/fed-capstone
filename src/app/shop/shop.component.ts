@@ -14,11 +14,12 @@ export class ShopComponent implements OnInit {
   pageSize = 9;
   idCat = 1;
   public isCollapsed: boolean[] = [];
-  subcategoryFilterArgs = {subcategoryClick: ''};
+  filterString: string;
 
   alert = (name: string) => {
+    name = name.replace(/\s/g, "").toLowerCase();
+    this.filterString = name;
     console.log('itemName: ' + name);
-    this.subcategoryFilterArgs.subcategoryClick = name;
   }
 
 
