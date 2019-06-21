@@ -16,8 +16,8 @@ export class SubcategoryFilterPipe implements PipeTransform {
       console.log(result);
       return result;
     } else {
-      $('.products').html('No results were found');
-        }
+    alert('No items were found!');
+    }
   }
 
 }
