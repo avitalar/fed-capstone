@@ -13,13 +13,18 @@ export class ShopComponent implements OnInit {
   page = 1;
   pageSize = 9;
   idCat = 1;
-  public isCollapsed: boolean[] = [];
   filterString: string;
+  public isCollapsed: boolean[] = [];
 
   alert = (name: string) => {
-    name = name.replace(/\s/g, "").toLowerCase();
     this.filterString = name;
-    console.log('itemName: ' + name);
+  }
+  public calcFunc = (collectionSize: number) => {
+    if (this.filterString && !collectionSize) {
+      return 10;
+    } else {
+      return 100;
+    }
   }
 
 
