@@ -13,6 +13,7 @@ import { NotFoundComponentComponent } from './not-found-component/not-found-comp
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { ProductPageComponent } from './product-page/product-page.component';
 import { SubcategoryFilterPipe } from './subcategory-filter.pipe';
+import { PriceFilterPipe } from './price-filter.pipe';
 
 
 const appRoutes: Routes = [
@@ -48,7 +49,8 @@ const appRoutes: Routes = [
     ShopComponent,
     NotFoundComponentComponent,
     ProductPageComponent,
-    SubcategoryFilterPipe
+    SubcategoryFilterPipe,
+    PriceFilterPipe
 
   ],
   imports: [

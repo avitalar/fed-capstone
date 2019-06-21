@@ -15,6 +15,8 @@ export class ShopComponent implements OnInit {
   idCat = 1;
   filterString: string;
   subcategoriesArray: Array<object> = [];
+  // pricesFilterArray: Array<array> = [];
+  pricesFilterArray = [{'min':'1','max':'50'},{'min':'51','max':'100'},{'min':'101','max':'200'}]
   public isCollapsed: boolean[] = [];
 
   subcategoryFilterFunc = (name: string) => {

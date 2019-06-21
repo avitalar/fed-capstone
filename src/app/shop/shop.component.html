@@ -18,7 +18,9 @@
           </div>
         </div>
         </div>
-
+        <select>
+          <option *ngFor="let price of pricesFilterArray" >{{price.min}} - {{price.max}}</option>
+        </select>
       </div>
       <div class="products col-md-9">
           <pre>Current page: {{page}}</pre>         
