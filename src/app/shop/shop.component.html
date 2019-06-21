@@ -8,10 +8,10 @@
             <p><strong>{{result.category}}</strong></p>
     </button>
             <div *ngFor="let subcategory of result.subcategories">
-          <div [attr.id]="'collapse'+i" [ngbCollapse]="!isCollapsed[i]">
+          <div *ngIf="subcategory.items.length > 0;" [attr.id]="'collapse'+i" [ngbCollapse]="!isCollapsed[i]">
               <div>
                 <div>
-                    <a (click)="alert(subcategory.name);">{{subcategory.name}}</a>
+                    <a (click)="subcategoryFilterFunc(subcategory.name);">{{subcategory.name}}</a>
                   </div>
               </div>
             </div>
@@ -22,14 +22,13 @@
       </div>
       <div class="products col-md-9">
           <pre>Current page: {{page}}</pre>         
-          <ngb-pagination
+          <ngb-pagination *ngIf="calcFunc() > 0;"
           [(page)]="page"
           [pageSize]="pageSize"
           [collectionSize]="calcFunc()"></ngb-pagination>   
-<div *ngIf="allProducts; else elseBlock" class="row">
-                
+<div *ngIf="allProducts; else elseBlock" class="row">                
             <div class="col-md-4 item" *ngFor="let product of allProducts | subcategoryFilter:filterString | slice: ((page-1) * pageSize) : ((page-1) * pageSize) + pageSize;">
-              <a [routerLink]="['/product/' + product.name]">add to cart</a>
+              <a [routerLink]="['/product/' + product.name]">View Product</a>
               <p>price is: {{product.price}}</p>
                 <img width=50 [src]="product.imagelink" /> 
                 <h4>{{product.name}}</h4>

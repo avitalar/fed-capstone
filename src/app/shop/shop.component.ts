@@ -14,14 +14,28 @@ export class ShopComponent implements OnInit {
   pageSize = 9;
   idCat = 1;
   filterString: string;
+  subcategoriesArray: Array<object> = [];
   public isCollapsed: boolean[] = [];
 
-  alert = (name: string) => {
+  subcategoryFilterFunc = (name: string) => {
+    console.log(this.subcategoriesArray);
+    this.filterString = name;
+    this.subcategoriesArray.forEach(el => {
+      // console.log('name: ' + el[0] + 'length: ' + el[1]);
+      if (el[0] === name && el[1] > 0) {
+        console.log('here');
+        this.calcFunc(el[1]);
+      } else if (el[1] === 0) {
+        console.log('not here: ' + el[1]);
+        console.log(this.allProducts.length);
+        this.calcFunc(this.allProducts.length);
+      }
+    });
     this.filterString = name;
   }
-  public calcFunc = (collectionSize: number) => {
+  calcFunc = (collectionSize: number) => {
     if (this.filterString && !collectionSize) {
-      return 10;
+      return collectionSize;
     } else {
       return 100;
     }
@@ -38,7 +52,10 @@ export class ShopComponent implements OnInit {
       responseArray.push(this.searchResults);
       responseArray[0].forEach(category => {
          category.subcategories.forEach(subcategory => {
-          subcategory.items.forEach(item => {
+           if (subcategory.items.length > 0) {
+          this.subcategoriesArray.push([subcategory.name,subcategory.items.length]);
+        }
+           subcategory.items.forEach(item => {
            this.allProducts.push(item);
           });
        });
@@ -47,5 +64,6 @@ export class ShopComponent implements OnInit {
   console.log('Error: ' + error.statusText);
 });
 }
+
 
 }
