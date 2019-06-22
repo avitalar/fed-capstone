@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap, Router } from '@angular/router'
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { ProdApi } from '../prod-api';
 import {ProductsDataService} from '../products-data.service';
 import { cartArray } from '../globals';
+import { ɵBrowserPlatformLocation } from '@angular/platform-browser';
 
 
 @Component({
@@ -15,14 +16,40 @@ export class ProductPageComponent implements OnInit {
   allProducts: Array<object> = [];
   searchResults: ProdApi;
   productArray: Array<object> = [];
+  quantValue = 1;
 
-  addToCart(addToCartObject) {
-    cartArray.push(addToCartObject);
-    localStorage.setItem('cart', JSON.stringify(cartArray));
-    console.log(cartArray);
+  quantityFunction(value) {
+    this.quantValue = value;
   }
 
-  constructor(private ProductsDataService: ProductsDataService,private route: ActivatedRoute, private router: Router) {   }
+  addToCart(addToCartObject, quantValue: number) {
+    const localStorageCart = JSON.parse(localStorage.getItem('cart')) || [];
+    if (localStorageCart.length > 0) {
+      console.log('local is bigger than 0');
+// tslint:disable-next-line: prefer-for-of
+      for (let i = 0; i < localStorageCart.length; i++) {
+        localStorageCart[i].quantValue = parseInt(localStorageCart[i].quantValue, 10);
+        console.log('localStorageCart[i].addToCartObject.name: ' + localStorageCart[i].addToCartObject.name);
+        console.log('addToCartObject.name: ' + addToCartObject.name);
+        if (localStorageCart[i].addToCartObject.name === addToCartObject.name) {
+          console.log('exist');
+          localStorageCart[i].quantValue += quantValue;
+          break;
+         } else {
+          localStorageCart.push({addToCartObject, quantValue});
+         }
+
+    }
+
+  } else {
+    localStorageCart.push({addToCartObject, quantValue});
+
+  }
+  localStorage.setItem('cart', JSON.stringify(localStorageCart));
+
+
+}
+  constructor(private ProductsDataService: ProductsDataService, private route: ActivatedRoute, private router: Router) {   }
 
   ngOnInit() {
     this.route.paramMap.subscribe( (params: ParamMap) => {
@@ -53,7 +80,6 @@ export class ProductPageComponent implements OnInit {
         this.productArray.push(el);
         }
       });
-      console.log(this.productArray);
 
 }, (error) => {
   console.log('Error: ' + error.statusText);
