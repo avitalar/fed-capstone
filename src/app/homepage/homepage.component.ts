@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {ProductsDataService} from '../products-data.service';
 import { ProdApi } from '../prod-api';
 import { ViewEncapsulation } from '@angular/core';
-import { cartArray } from '../globals';
 
 @Component({
   selector: 'app-homepage',
@@ -21,11 +20,6 @@ export class HomepageComponent implements OnInit {
 // tslint:disable-next-line: no-shadowed-variable
   constructor(private ProductsDataService: ProductsDataService) {   }
 
-  addToCart(addToCartObject) {
-    cartArray.push(addToCartObject);
-    localStorage.setItem('cart', JSON.stringify(cartArray));
-    console.log(cartArray);
-  }
 
   ngOnInit() {
 this.ProductsDataService.prodData().then( (response) => {

@@ -21,10 +21,36 @@ export class ShopComponent implements OnInit {
 // tslint:disable-next-line: max-line-length
   pricesFiltreArray: Array<object> = [];
   public isCollapsed: boolean[] = [];
-  // pricesFilterArray: Array<array> = [];
-  onSearchChange(searchValue: string ) {
-  console.log(searchValue);
-  this.filterPrice = searchValue;
+  filterBool = false;
+  orderByPriceBool = false;
+  SortPriceFunc(event) {
+    if (this.orderByPriceBool === true) {
+      this.orderByPriceBool = false;
+      event.target.className = '';
+    } else {
+      this.orderByPriceBool = true;
+      event.target.className = 'selected';
+    }
+  }
+  filterPriceFunc(searchValue: string, event ) {
+    const allPriceBtns = event.target.parentElement.children.length;
+    const childrenArr = event.target.parentElement.children;
+    console.log(childrenArr);
+    for (const entry of childrenArr) {
+      entry.className = '';
+    }
+    event.target.className = 'selected';
+    this.filterPrice = searchValue;
+}
+ShowOnlyStock(event) {
+if (this.filterBool === true) {
+  this.filterBool = false;
+  event.target.className = '';
+} else {
+  this.filterBool = true;
+  event.target.className = 'selected';
+}
+
 }
 
   subcategoryFilterFunc = (name: string) => {

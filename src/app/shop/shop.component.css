@@ -6,3 +6,7 @@
     min-height: 343px;
     margin-top: 20px;
 }
+.selected {
+    background-color: blue;
+    color:#fff;
+}

@@ -6,7 +6,6 @@
 [carouselClasses]="['owl-theme']">
 <div class="item" *ngFor="let featured of featuredItem;let i = index">
     <h5>{{featured.name}}</h5>
-    <button (click)="addToCart(featured)">Add to Cart</button>
 
 <div class="featuredImgWrapper"><img [src]="featured.imagelink" />
 <!-- <div class="featuredImgWrapper"><img (load)="dosomething($event)" [src]="featured.imagelink" /> -->

@@ -19,13 +19,15 @@
           </div>
         </div>
         </div>
-        <div class="">
-          <button type="button" *ngFor="let price of pricesFiltreArray; index as i;" (click)="onSearchChange(price)" >{{price.title}}</button>
+        <div class="Pricefilters">
+          <button type="button" *ngFor="let price of pricesFiltreArray; index as i;" (click)="filterPriceFunc(price,$event)" >{{price.title}}</button>
         </div>
+        <button (click)="ShowOnlyStock($event)">Show only stocked</button>
+        <button (click)="SortPriceFunc($event)">Order By Price</button>
       </div>
       <div class="products col-md-9">
 <div *ngIf="allProducts; else elseBlock" class="row">                
-            <div class="col-md-4 item" *ngFor="let product of allProducts | subcategoryFilter:filterString | priceFilter:filterPrice;">
+            <div class="col-md-4 item" *ngFor="let product of allProducts | orderByPrice:orderByPriceBool | filterStocked:filterBool | subcategoryFilter:filterString | priceFilter:filterPrice;">
               <a [routerLink]="['/product/' + product.name]">View Product</a>
               <p>price is: {{product.price}}</p>
                 <img width=50 [src]="product.imagelink" /> 
@@ -34,8 +36,7 @@
               <p> rating is: {{product.rating}}</p> 
               <p> stock is: {{product.stock}}</p> 
               <p> sub category is: {{product.subcategory}}</p>               
-            </div>
-          
+          </div>
 
 </div>  
     <ng-template #elseBlock>Loading...</ng-template> 

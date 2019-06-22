@@ -2,7 +2,7 @@
   product-page works!
 </p>
 <div *ngFor="let product of productArray;">
-  <a [routerLink]="['/product/' + product.name]">add to cart</a>
+    <button (click)="addToCart(product)">Add to Cart</button>
   <p>price is: {{product.price}}</p>
     <img width=50 [src]="product.imagelink" /> 
     <h4>{{product.name}}</h4>

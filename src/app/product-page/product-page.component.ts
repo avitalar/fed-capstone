@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router'
 import { ProdApi } from '../prod-api';
 import {ProductsDataService} from '../products-data.service';
+import { cartArray } from '../globals';
 
 
 @Component({
@@ -14,6 +15,12 @@ export class ProductPageComponent implements OnInit {
   allProducts: Array<object> = [];
   searchResults: ProdApi;
   productArray: Array<object> = [];
+
+  addToCart(addToCartObject) {
+    cartArray.push(addToCartObject);
+    localStorage.setItem('cart', JSON.stringify(cartArray));
+    console.log(cartArray);
+  }
 
   constructor(private ProductsDataService: ProductsDataService,private route: ActivatedRoute, private router: Router) {   }
 
