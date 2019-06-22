@@ -8,43 +8,38 @@ import { ProdApi } from '../prod-api';
   styleUrls: ['./shop.component.css']
 })
 export class ShopComponent implements OnInit {
+// tslint:disable-next-line: no-shadowed-variable
+  constructor(private ProductsDataService: ProductsDataService) {   }
   searchResults: ProdApi;
   allProducts: Array<object> = [];
   page = 1;
   pageSize = 9;
   idCat = 1;
   filterString: string;
+  filterPrice: string;
   subcategoriesArray: Array<object> = [];
-  // pricesFilterArray: Array<array> = [];
-  pricesFilterArray = [{'min':'1','max':'50'},{'min':'51','max':'100'},{'min':'101','max':'200'}]
+// tslint:disable-next-line: max-line-length
+  pricesFiltreArray: Array<object> = [];
   public isCollapsed: boolean[] = [];
+  // pricesFilterArray: Array<array> = [];
+  onSearchChange(searchValue: string ) {
+  console.log(searchValue);
+  this.filterPrice = searchValue;
+}
 
   subcategoryFilterFunc = (name: string) => {
-    console.log(this.subcategoriesArray);
+    if (name === 'all') {
+      this.filterString = name;
+    }
     this.filterString = name;
     this.subcategoriesArray.forEach(el => {
       // console.log('name: ' + el[0] + 'length: ' + el[1]);
       if (el[0] === name && el[1] > 0) {
-        console.log('here');
-        this.calcFunc(el[1]);
       } else if (el[1] === 0) {
-        console.log('not here: ' + el[1]);
-        console.log(this.allProducts.length);
-        this.calcFunc(this.allProducts.length);
       }
     });
     this.filterString = name;
   }
-  calcFunc = (collectionSize: number) => {
-    if (this.filterString && !collectionSize) {
-      return collectionSize;
-    } else {
-      return 100;
-    }
-  }
-
-
-  constructor(private ProductsDataService: ProductsDataService) {   }
 
   ngOnInit() {
     this.ProductsDataService.prodData().then( (response) => {
@@ -55,7 +50,7 @@ export class ShopComponent implements OnInit {
       responseArray[0].forEach(category => {
          category.subcategories.forEach(subcategory => {
            if (subcategory.items.length > 0) {
-          this.subcategoriesArray.push([subcategory.name,subcategory.items.length]);
+          this.subcategoriesArray.push([subcategory.name, subcategory.items.length]);
         }
            subcategory.items.forEach(item => {
            this.allProducts.push(item);
@@ -65,6 +60,13 @@ export class ShopComponent implements OnInit {
 }, (error) => {
   console.log('Error: ' + error.statusText);
 });
+    this.pricesFiltreArray = [{title: 'Under 3$', min: 0, max: 3},
+      {title: '3$ to 6$', min: 3, max: 6},
+      {title: '6$ to 10$', min: 6, max: 10},
+      {title: 'over 10$', min: 10, max: 999},
+      {title: 'Show all', min: 0, max: 999}
+    ];
+
 }
 
 

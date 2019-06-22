@@ -1,6 +1,7 @@
 <div class="container">
     <div class="row">
       <div class="sideMenu col-md-3">
+          <a (click)="subcategoryFilterFunc('all');">Show All Products</a>
         <div *ngFor="let result of searchResults; index as i;">
           <div>
               <button type="button" class="btn btn-outline-primary" (click)="isCollapsed[i] = !isCollapsed[i]"
@@ -18,18 +19,13 @@
           </div>
         </div>
         </div>
-        <select>
-          <option *ngFor="let price of pricesFilterArray" >{{price.min}} - {{price.max}}</option>
-        </select>
+        <div class="">
+          <button type="button" *ngFor="let price of pricesFiltreArray; index as i;" (click)="onSearchChange(price)" >{{price.title}}</button>
+        </div>
       </div>
       <div class="products col-md-9">
-          <pre>Current page: {{page}}</pre>         
-          <ngb-pagination *ngIf="calcFunc() > 0;"
-          [(page)]="page"
-          [pageSize]="pageSize"
-          [collectionSize]="calcFunc()"></ngb-pagination>   
 <div *ngIf="allProducts; else elseBlock" class="row">                
-            <div class="col-md-4 item" *ngFor="let product of allProducts | subcategoryFilter:filterString | slice: ((page-1) * pageSize) : ((page-1) * pageSize) + pageSize;">
+            <div class="col-md-4 item" *ngFor="let product of allProducts | subcategoryFilter:filterString | priceFilter:filterPrice;">
               <a [routerLink]="['/product/' + product.name]">View Product</a>
               <p>price is: {{product.price}}</p>
                 <img width=50 [src]="product.imagelink" /> 

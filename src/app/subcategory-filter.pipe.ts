@@ -10,6 +10,10 @@ export class SubcategoryFilterPipe implements PipeTransform {
         return allProducts;
     }
     console.log(filter);
+    //show all products
+    if (filter === 'all') {
+      return allProducts;
+    }
     // fix for canned food category
     if (filter === 'Canned Food') {
       filter = 'Canned Goods';
