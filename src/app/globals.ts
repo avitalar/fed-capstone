@@ -1,1 +1,1 @@
-export let cartArray: Array<object> = [];
+export let cartArray: Array<any> = [];

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { ProdApi } from '../prod-api';
 import {ProductsDataService} from '../products-data.service';
-import { cartArray } from '../globals';
 import { ɵBrowserPlatformLocation } from '@angular/platform-browser';
 
 
@@ -16,39 +15,54 @@ export class ProductPageComponent implements OnInit {
   allProducts: Array<object> = [];
   searchResults: ProdApi;
   productArray: Array<object> = [];
+  cartArray: Array<object> = [];
   quantValue = 1;
 
   quantityFunction(value) {
     this.quantValue = value;
   }
 
-  addToCart(addToCartObject, quantValue: number) {
-    const localStorageCart = JSON.parse(localStorage.getItem('cart')) || [];
-    if (localStorageCart.length > 0) {
-      console.log('local is bigger than 0');
+  isItemInCart(itemName,cartArray) {
+    if (cartArray.length > 0) {
 // tslint:disable-next-line: prefer-for-of
-      for (let i = 0; i < localStorageCart.length; i++) {
-        localStorageCart[i].quantValue = parseInt(localStorageCart[i].quantValue, 10);
-        console.log('localStorageCart[i].addToCartObject.name: ' + localStorageCart[i].addToCartObject.name);
-        console.log('addToCartObject.name: ' + addToCartObject.name);
-        if (localStorageCart[i].addToCartObject.name === addToCartObject.name) {
-          console.log('exist');
-          localStorageCart[i].quantValue += quantValue;
-          break;
-         } else {
-          localStorageCart.push({addToCartObject, quantValue});
-         }
-
+    for (let i = 0; i < cartArray.length; i++) {
+      if (cartArray[i].addToCartItem.name === itemName) {
+            return true;
+        }
     }
-
+    return false;
   } else {
-    localStorageCart.push({addToCartObject, quantValue});
-
+    return false;
   }
-  localStorage.setItem('cart', JSON.stringify(localStorageCart));
+  }
 
+  addToCart(addToCartItem: any, quantValue: any) {
+    const cartArray = JSON.parse(localStorage.getItem('cart')) || [];
+    const cartObject = {addToCartItem, quantValue};
+    const isExist = this.isItemInCart(addToCartItem.name, cartArray);
+    console.log(isExist);
+// tslint:disable-next-line: radix
+    quantValue = parseInt(quantValue);
+    if (!isExist) {
+      cartArray.push(cartObject);
+    } else {
+// tslint:disable-next-line: prefer-for-of
+      for (let i = 0; i < cartArray.length; i++) {
+        console.log('in for');
+// tslint:disable-next-line: radix
+        console.log(typeof(cartArray[i].quantValue));
+        if (cartArray[i].addToCartItem.name === addToCartItem.name) {
+          console.log('exist in loop');
+          quantValue = parseInt(quantValue);
+          cartArray[i].quantValue += quantValue;
+          break;
+          }
+      }
+    }
+    console.log(cartArray);
+    localStorage.setItem('cart', JSON.stringify(cartArray));
+  }
 
-}
   constructor(private ProductsDataService: ProductsDataService, private route: ActivatedRoute, private router: Router) {   }
 
   ngOnInit() {
