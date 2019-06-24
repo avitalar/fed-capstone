@@ -1,9 +1,32 @@
+<div class="container">
 <p>
   cart works!
 </p>
 <div *ngIf="cartArray; else elseBlockCart">
-    <div class="item" *ngFor="let cartItem of cartArray;let i = index">
-      <ul>
-        <li>{{cartItem.name}} </li>
-      </ul>
+  <table class="table">
+    <thead>
+        <th scope="col">Product Name </th>
+        <th scope="col">Image</th>
+        <th scope="col">Price</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Total</th>
+        <th scope="col"></th>
+      </thead>
+      <tr>  
+  <tr class="item" *ngFor="let cartItem of cartArray;let i = index">
+      
+<td>{{cartItem.addToCartItem.name}}</td>
+<td><img width=50 [src]="cartItem.addToCartItem.imagelink" /></td>
+<td>{{cartItem.addToCartItem.price}}</td>
+<td><input type="number" min="1" max="100" (input)="quantityFunction($event.target.value)" value="{{cartItem.quantValue}}"/>
+  <button (click)="UpdateCart(cartItem.addToCartItem)" [disabled]="!this.quantValue || this.quantValue == cartItem.quantValue" >Update Cart</button>
+</td>
+<td>{{calcLineItem(cartItem.quantValue,cartItem.addToCartItem.price)}}</td>
+<th><button (click)="DeleteObject(cartItem.addToCartItem)" >Delete</button> </th>
+
+
+      </tr>
+    </table>
+    </div>
 <ng-template #elseBlockCart>Loading...</ng-template>
+</div>

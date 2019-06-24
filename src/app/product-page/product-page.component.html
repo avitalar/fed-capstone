@@ -2,14 +2,14 @@
   product-page works!
 </p>
 <div *ngFor="let product of productArray;">
-  <input type="number" min="1" max="10" (input)="quantityFunction($event.target.value)" value="1"/>
+  <input type="number" min="1" max="100" (input)="quantityFunction($event.target.value)" value="1"/>
     <button (click)="addToCart(product,quantValue)">Add to Cart</button>
   <p>price is: {{product.price}}</p>
     <img width=50 [src]="product.imagelink" /> 
     <h4>{{product.name}}</h4>
-  <p> category is: {{product.category}}</p> 
+  <p> description is: {{product.description}}</p> 
   <p> rating is: {{product.rating}}</p> 
   <p> stock is: {{product.stock}}</p> 
-  <p> sub category is: {{product.subcategory}}</p>      
  
 </div>
+<a href="/shop">Back to Shop</a>
