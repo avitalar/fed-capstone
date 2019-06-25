@@ -21,12 +21,36 @@
 <td><input type="number" min="1" max="100" (input)="quantityFunction($event.target.value)" value="{{cartItem.quantValue}}"/>
   <button (click)="UpdateCart(cartItem.addToCartItem)" [disabled]="!this.quantValue || this.quantValue == cartItem.quantValue" >Update Cart</button>
 </td>
-<td>{{calcLineItem(cartItem.quantValue,cartItem.addToCartItem.price)}}</td>
+<td>{{calcLineItem(cartItem.quantValue,cartItem.addToCartItem.price)}}$</td>
 <th><button (click)="DeleteObject(cartItem.addToCartItem)" >Delete</button> </th>
 
 
       </tr>
     </table>
     </div>
+
+<div class="cartTotal col-md-4 offset-4">
+  <table class="table">
+    <tr>
+      <td scope="col">Subtotal cost:</td>
+      <td scope="col">{{CalcSubTotal()}}$</td>
+    </tr>
+    <tr>
+      <td scope="col">Tax addition:(17%)</td>
+      <td>{{calcTaxes()}}$</td>
+    </tr>
+    <tr>
+        <td scope="col">Shipping cost:</td>
+        <td>{{ShippingValue}}$</td>
+      </tr>
+    <tr>
+        <td scope="col">Cart Total:</td>
+        <td>{{cartTotalFunc()}}$</td>
+      </tr>
+  </table>
+</div>
+<button (click)="Checkout()">Checkout</button>
+
+
 <ng-template #elseBlockCart>Loading...</ng-template>
 </div>
