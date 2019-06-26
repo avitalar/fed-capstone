@@ -16,6 +16,8 @@ import { SubcategoryFilterPipe } from './subcategory-filter.pipe';
 import { PriceFilterPipe } from './price-filter.pipe';
 import { FilterStockedPipe } from './filter-stocked.pipe';
 import { OrderByPricePipe } from './order-by-price.pipe';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 const appRoutes: Routes = [
@@ -54,7 +56,9 @@ const appRoutes: Routes = [
     SubcategoryFilterPipe,
     PriceFilterPipe,
     FilterStockedPipe,
-    OrderByPricePipe
+    OrderByPricePipe,
+    HeaderComponent,
+    FooterComponent
 
   ],
   imports: [

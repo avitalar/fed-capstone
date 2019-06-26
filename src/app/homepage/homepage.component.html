@@ -1,4 +1,14 @@
-<div *ngIf="featuredItem.length > 1; else elseBlock">
+<section class="bgimage">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="header_text">
+          <h1>Grocery Cloud</h1>
+          <h2>Welcome to our online Grocerys store!</h2>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div *ngIf="featuredItem.length > 1; else elseBlock">
 <div class="container">
 <owl-carousel
 [options]="{items: 5, dots: true, nav: true}"
