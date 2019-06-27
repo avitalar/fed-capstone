@@ -90,9 +90,7 @@ a.shopNowBtn {
   color: red !important;
 }
 
-button:focus {
-  outline: none !important;
-}
+
 
 .owl-theme .owl-nav [class*='owl-']:hover {
   background: none;

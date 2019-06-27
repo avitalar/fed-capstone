@@ -1,12 +1,14 @@
 <div class="container">
     <div class="row">
-      <div class="sideMenu col-md-3">
-          <a (click)="subcategoryFilterFunc('all');">Show All Products</a>
-        <div *ngFor="let result of searchResults; index as i;">
+      <div *ngIf="searchResults; else loaderBlock;" class="sideMenu col-md-3">
+          <!-- <a (click)="subcategoryFilterFunc('all');">Show All Products</a> -->
+          <div  class="categoriesMenu">
+          <h3>Product Categories</h3>
+        <div  *ngFor="let result of searchResults; index as i;">
           <div>
-              <button type="button" class="btn btn-outline-primary" (click)="isCollapsed[i] = !isCollapsed[i]"
+              <button type="button" class="categoriesBtn" (click)="isCollapsed[i] = !isCollapsed[i]"
             [attr.aria-expanded]="!isCollapsed[i]" [attr.aria-controls]="'collapse'+i">
-            <p><strong>{{result.category}}</strong></p>
+            {{result.category}}
     </button>
             <div *ngFor="let subcategory of result.subcategories">
           <div *ngIf="subcategory.items.length > 0;" [attr.id]="'collapse'+i" [ngbCollapse]="!isCollapsed[i]">
@@ -19,12 +21,14 @@
           </div>
         </div>
         </div>
+      </div>
         <div class="Pricefilters">
           <button type="button" *ngFor="let price of pricesFiltreArray; index as i;" (click)="filterPriceFunc(price,$event)" >{{price.title}}</button>
         </div>
         <button (click)="ShowOnlyStock($event)">Show only stocked</button>
         <button (click)="SortPriceFunc($event)">Order By Price</button>
       </div>
+      <ng-template #loaderBlock><img src="../../assets/200.gif"></ng-template> 
       <div class="products col-md-9">
 <div *ngIf="allProducts; else elseBlock" class="row">                
             <div class="col-md-4 item" *ngFor="let product of allProducts | orderByPrice:orderByPriceBool | filterStocked:filterBool | subcategoryFilter:filterString | priceFilter:filterPrice;">
@@ -39,7 +43,7 @@
           </div>
 
 </div>  
-    <ng-template #elseBlock>Loading...</ng-template> 
+    <ng-template #elseBlock><img src="../../assets/200.gif"></ng-template> 
   </div>
 </div>
 </div>

@@ -1,5 +1,6 @@
 .sideMenu {
     background-color: #eee;
+    margin-top: 20px;
 }
 .products .item {
     border: 1px solid #000;
@@ -9,4 +10,15 @@
 .selected {
     background-color: blue;
     color:#fff;
+}
+.categoriesBtn {
+    width: 100%;
+    text-align: left;
+    border: none;
+    padding: 5px;
+    font-weight: 600;
+    background: none;
+}
+.categoriesMenu a {
+padding-left: 30px;
 }

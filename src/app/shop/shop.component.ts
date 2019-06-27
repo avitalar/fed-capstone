@@ -21,21 +21,12 @@ export class ShopComponent implements OnInit {
 // tslint:disable-next-line: max-line-length
   pricesFiltreArray: Array<object> = [];
   public isCollapsed: boolean[] = [];
-  filterBool = false;
   orderByPriceBool = false;
-  SortPriceFunc(event) {
-    if (this.orderByPriceBool === true) {
-      this.orderByPriceBool = false;
-      event.target.className = '';
-    } else {
-      this.orderByPriceBool = true;
-      event.target.className = 'selected';
-    }
-  }
+  filterBool = {byStock: false, isByPrice: this.orderByPriceBool};
+
+
   filterPriceFunc(searchValue: string, event ) {
-    const allPriceBtns = event.target.parentElement.children.length;
     const childrenArr = event.target.parentElement.children;
-    console.log(childrenArr);
     for (const entry of childrenArr) {
       entry.className = '';
     }
@@ -43,14 +34,33 @@ export class ShopComponent implements OnInit {
     this.filterPrice = searchValue;
 }
 ShowOnlyStock(event) {
-if (this.filterBool === true) {
-  this.filterBool = false;
-  event.target.className = '';
+  if (this.filterBool.byStock === true) {
+
+  this.filterBool = {byStock: false, isByPrice: this.orderByPriceBool};
 } else {
-  this.filterBool = true;
+  this.filterBool = {byStock: true, isByPrice: this.orderByPriceBool};
+}
+  if (event.target.className === '') {
   event.target.className = 'selected';
+} else {
+  event.target.className = '';
 }
 
+}
+SortPriceFunc(event) {
+  console.log('orderByPriceBool: ' + this.orderByPriceBool);
+  if (this.orderByPriceBool === true) {
+    this.orderByPriceBool = false;
+    event.target.className = '';
+  } else {
+    this.orderByPriceBool = true;
+    event.target.className = 'selected';
+  }
+  if (this.filterBool.byStock) {
+    this.filterBool = {byStock: true, isByPrice: true};
+  } else {
+    this.filterBool = {byStock: true, isByPrice: false};
+  }
 }
 
   subcategoryFilterFunc = (name: string) => {
@@ -83,6 +93,7 @@ if (this.filterBool === true) {
           });
        });
       });
+
 }, (error) => {
   console.log('Error: ' + error.statusText);
 });
