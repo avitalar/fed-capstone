@@ -19,6 +19,14 @@
     font-weight: 600;
     background: none;
 }
+a.showAllCat {
+    padding-left: 5px !important;
+}
 .categoriesMenu a {
 padding-left: 30px;
+cursor: pointer;
+}
+#ShowOnlyStock,#SortPrice {
+    margin-top: 10px;
+    margin-right: 5px;
 }

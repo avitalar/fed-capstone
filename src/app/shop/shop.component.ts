@@ -57,9 +57,9 @@ SortPriceFunc(event) {
     event.target.className = 'selected';
   }
   if (this.filterBool.byStock) {
-    this.filterBool = {byStock: true, isByPrice: true};
+    this.filterBool = {byStock: true, isByPrice: this.orderByPriceBool};
   } else {
-    this.filterBool = {byStock: true, isByPrice: false};
+    this.filterBool = {byStock: false, isByPrice: this.orderByPriceBool};
   }
 }
 
