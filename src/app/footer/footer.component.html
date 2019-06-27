@@ -1,8 +1,8 @@
-<div class="container">
-  <div class="">
-    <div *ngIf="!submitted" class="">
-        <div class="col-md-12"><h3>Contact us</h3></div>
-      <form  class="row">
+
+    <div *ngIf="!submitted" class="formWrapper container-fluid">
+        <div class="container"><h3>Contact us</h3></div>
+      <div class="container">
+        <form  class="row">
         <div  class="col-md-3 form-group">
           <label for="name">Name</label>
           <input type="text" class="form-control" id="name" required>
@@ -16,18 +16,20 @@
             <input type="text" class="form-control" id="message" required>
           </div>     
          <div class="col-md-3 form-group"> 
-        <button type="button" (click)="onSubmit($event)" class="btn btn-success">Submit</button>
+        <button type="submit" (click)="onSubmit($event)" class="bg-dark btn btn-success">Submit</button>
          </div>  
-
       </form>
     </div>
+    </div>
     <div *ngIf="submitted"><h3>Thank you for contacting us. we will be in touch soon :)</h3></div>
-      <div class="row">
+      
+   <div class="container-fluid footerInfo"> 
+      <div class="container">
+    <div class="row">
       <div class="col-md-3">@Grocery Cloud 2019</div>
       <div class="col-md-2"><h4>About us:</h4></div>
     <div class="col-md-4"><p>We are a fictional Grocery store made for learning purposes.. </p></div>
     <div class="col-md-3"><a href="mailto:info@grocerycloud.com">info@grocerycloud.com</a></div>
-
-  </div>
-  </div>
+  </div> 
+</div>
 </div>

@@ -41,6 +41,7 @@ transform: scale(1.2);
 }
 .owl-carousel .item {
     margin: 10px;
+    text-align: center;
 }
 .overlay {
     position: absolute;
@@ -49,9 +50,54 @@ transform: scale(1.2);
     right: 0;
     left: 0;
     bottom: 0;
-    padding: 30px;
+    padding: 10px;
     display: none;
 }
 .overlay.visible {
     display: block;
+}
+
+a.productLink {
+  position: absolute;
+  bottom: 0;
+  text-align: center;
+  right: 0;
+  left: 0;
+}
+
+a.shopNowBtn {
+  background-color: #4b4848;
+  color: #efe0e0;
+  text-decoration: none;
+  padding: 7px 20px;
+  position: relative;
+  border-radius: 20px;
+  font-size: 20px;
+  top: 20px;
+}
+.owl-prev {
+  position: absolute;
+  left: -40px;
+  font-size: 70px !important;
+  top: 70px;
+  color: red !important;
+}
+.owl-next {
+  position: absolute;
+  right: -40px;
+  font-size: 70px !important;
+  top: 70px;
+  color: red !important;
+}
+
+button:focus {
+  outline: none !important;
+}
+
+.owl-theme .owl-nav [class*='owl-']:hover {
+  background: none;
+}
+.featuredItemTitle { 
+  text-align: center;
+  padding: 20px 0 40px;
 }
