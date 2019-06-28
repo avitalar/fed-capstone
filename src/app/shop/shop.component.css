@@ -3,13 +3,10 @@
     margin-top: 20px;
 }
 .products .item {
-    border: 1px solid #000;
-    min-height: 343px;
-    margin-top: 20px;
-}
-.selected {
-    background-color: blue;
-    color:#fff;
+    margin: 20px 0;
+    text-align: center;
+    position: relative;
+    min-height: 400px;
 }
 .categoriesBtn {
     width: 100%;
@@ -29,4 +26,61 @@ cursor: pointer;
 #ShowOnlyStock,#SortPrice {
     margin-top: 10px;
     margin-right: 5px;
+}
+.stockQuan {
+    position: absolute;
+    bottom: -22px;
+    right: 10px;
+    font-weight: 600;
+}
+.itemImg {
+    background-color: #fff2fc;
+    background-size: contain;
+    height: 240px;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    border-bottom: none;
+    border: 15px solid #fff2fc;
+    margin-bottom: 10px;
+    border-bottom-width: 25px;
+}
+
+
+.ViewProductBtn {
+    background-color: #4b4848;
+    color: #fff;
+    text-decoration: none;
+    padding: 3px 10px 5px;
+    position: absolute;
+    border-radius: 5px;
+    font-size: 20px;
+    bottom: 10px;
+    text-align: center;
+    left: 0;
+    right: 0;
+    width: 150px;
+    margin: auto;
+}
+.pageTitle{
+    text-align:center;
+    margin-top: 10px;
+}
+.Pricefilters button, .filterBtns button {
+    background-color: #ffffff;
+    color: #2b2b2b;
+    margin: 5px;
+    font-size: 16px;
+    margin-left: 0;
+    padding: 5px 7px;
+    border-radius: 5px;
+    border: 1px solid #2b2b2b;
+}
+.Pricefilters button.selected, .filterBtns button.selected {
+    background-color: #4b4848;
+    color: #ffffff;
+}
+.subcategoryBtn.selected {
+    color: #170b62;
+    font-weight: 700;
 }

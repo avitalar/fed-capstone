@@ -1,9 +1,15 @@
 <div class="container">
     <div class="row">
+      <div class="col-md-12 pageTitle">
+        <h1>Our Products</h1>
+      </div>
+        <div class="col-md-12 offset-9 filterBtns">      
+            <button id="ShowOnlyStock" (click)="ShowOnlyStock($event)">Show only stocked</button>
+            <button id="SortPrice" (click)="SortPriceFunc($event)">Order By Price</button></div>
       <div *ngIf="searchResults; else loaderBlock;" class="sideMenu col-md-3">
           <div  class="categoriesMenu">
           <h3>Product Categories</h3>
-          <a class="showAllCat" (click)="subcategoryFilterFunc('all');">Show All Products</a>
+          <a class="showAllCat" (click)="subcategoryFilterFunc('all',$event);">Show All Products</a>
         <div  *ngFor="let result of searchResults; index as i;">
           <div>
               <button type="button" class="categoriesBtn" (click)="isCollapsed[i] = !isCollapsed[i]"
@@ -14,7 +20,7 @@
           <div *ngIf="subcategory.items.length > 0;" [attr.id]="'collapse'+i" [ngbCollapse]="!isCollapsed[i]">
               <div>
                 <div>
-                    <a (click)="subcategoryFilterFunc(subcategory.name);">{{subcategory.name}}</a>
+                    <a class="subcategoryBtn" (click)="subcategoryFilterFunc(subcategory.name,$event);">{{subcategory.name}}</a>
                   </div>
               </div>
             </div>
@@ -25,26 +31,25 @@
       <hr>
         <div class="Pricefilters">
           <h4>Filter by Price</h4>
-          <button type="button" *ngFor="let price of pricesFiltreArray; index as i;" (click)="filterPriceFunc(price,$event)" >{{price.title}}</button>
+          <button class="filterBtn" type="button" *ngFor="let price of pricesFiltreArray; index as i;" (click)="filterPriceFunc(price,$event)" >{{price.title}}</button>
         </div>
       </div>
+      
       <ng-template #loaderBlock><img src="../../assets/200.gif"></ng-template> 
       <div class="products col-md-9">
 <div *ngIf="allProducts; else elseBlock" class="row">                
-    <div class="col-md-12 offset-8">      
-      <button id="ShowOnlyStock" (click)="ShowOnlyStock($event)">Show only stocked</button>
-      <button id="SortPrice" (click)="SortPriceFunc($event)">Order By Price</button></div>
-  <div class="col-md-4 item" *ngFor="let product of allProducts | orderByPrice:orderByPriceBool | filterStocked:filterBool | subcategoryFilter:filterString | priceFilter:filterPrice;">
-              <a [routerLink]="['/product/' + product.name]">View Product</a>
-              <p>price is: {{product.price}}</p>
-                <img width=50 [src]="product.imagelink" /> 
+    
+  <div class="col-md-4" [ngStyle]="{'border-bottom': '1px solid rgba(193, 186, 186, 0.2)'}" *ngFor="let product of allProducts | orderByPrice:orderByPriceBool | filterStocked:filterBool | subcategoryFilter:filterString | priceFilter:filterPrice;">
+    <div class="item">       
+   
+                <div class="itemImg" [ngStyle]="{'background-image':'url('+product.imagelink+')'}" > 
+                <span [ngStyle]="{'color' : (product.stock < 5) ? 'red' : ''}" class="stockQuan">{{product.stock}} left</span> 
+                </div>
                 <h4>{{product.name}}</h4>
-              <p> category is: {{product.category}}</p> 
-              <p> rating is: {{product.rating}}</p> 
-              <p> stock is: {{product.stock}}</p> 
-              <p> sub category is: {{product.subcategory}}</p>               
+                <span>{{product.price}}$</span><br>
+                <a class="ViewProductBtn" [routerLink]="['/product/' + product.name]">View Product</a>
           </div>
-
+        </div> 
 </div>  
     <ng-template #elseBlock><img src="../../assets/200.gif"></ng-template> 
   </div>

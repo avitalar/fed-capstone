@@ -1,15 +1,31 @@
-<p>
-  product-page works!
-</p>
-<div *ngFor="let product of productArray;">
+<div *ngIf="productArray.length > 0" class="container">
+<div class="row productWrapper">
+  <div class="col-md-8 offset-2 row">
+      <div class="col-md-5">
+          <img width="100%" [src]="productArray[0].imagelink" /> </div>
+    <div class="productInfo col-md-7">
+        <h1>{{productArray[0].name}}</h1>
+        <div class="rateWrapper"><img *ngFor="let rate of productRating" class="ratingStar" src="../../assets/star.png"></div>
+  <h2>{{productArray[0].price}}$</h2>
+  <h5>{{productArray[0].description}}</h5> 
+  <p *ngIf="productArray[0].stock > 0;">{{productArray[0].stock}} in stock</p>
+  <p class="outOfStock" *ngIf="productArray[0].stock == 0;">OUT OF STOCK</p>
+
+  <div class="CartButtons">
   <input type="number" min="1" max="100" (input)="quantityFunction($event.target.value)" value="1"/>
-    <button (click)="addToCart(product,quantValue)">Add to Cart</button>
-  <p>price is: {{product.price}}</p>
-    <img width=50 [src]="product.imagelink" /> 
-    <h4>{{product.name}}</h4>
-  <p> description is: {{product.description}}</p> 
-  <p> rating is: {{product.rating}}</p> 
-  <p> stock is: {{product.stock}}</p> 
- 
+    <button [disabled]="productArray[0].stock == 0" (click)="addToCart(productArray[0],quantValue)">Add to Cart</button>
 </div>
-<a href="/shop">Back to Shop</a>
+<a class="backToShop" href="/shop">Back to Shop</a>
+
+</div>
+</div>
+</div>
+<div class="cartPopup">
+  <div class="inner">
+    <h1>Success!</h1>
+    <h2>{{productArray[0].name}} Was added to the Cart</h2>
+    <a href="/cart">Go to Cart</a>
+    <span class="closeBtn" (click)="ClosePopup()">X</span>
+  </div>
+</div>
+</div>

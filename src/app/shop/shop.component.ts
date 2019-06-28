@@ -48,7 +48,6 @@ ShowOnlyStock(event) {
 
 }
 SortPriceFunc(event) {
-  console.log('orderByPriceBool: ' + this.orderByPriceBool);
   if (this.orderByPriceBool === true) {
     this.orderByPriceBool = false;
     event.target.className = '';
@@ -63,18 +62,22 @@ SortPriceFunc(event) {
   }
 }
 
-  subcategoryFilterFunc = (name: string) => {
+  subcategoryFilterFunc = (name: string, event) => {
     if (name === 'all') {
       this.filterString = name;
     }
     this.filterString = name;
     this.subcategoriesArray.forEach(el => {
-      // console.log('name: ' + el[0] + 'length: ' + el[1]);
       if (el[0] === name && el[1] > 0) {
       } else if (el[1] === 0) {
       }
     });
     this.filterString = name;
+    const allBtns = document.querySelectorAll('.subcategoryBtn');
+    allBtns.forEach(el => {
+      el.className = 'subcategoryBtn';
+    });
+    event.target.className = 'subcategoryBtn selected';
   }
 
   ngOnInit() {
@@ -101,7 +104,7 @@ SortPriceFunc(event) {
       {title: '3$ to 6$', min: 3, max: 6},
       {title: '6$ to 10$', min: 6, max: 10},
       {title: 'over 10$', min: 10, max: 999},
-      {title: 'Show all', min: 0, max: 999}
+      {title: 'Remove filter', min: 0, max: 999}
     ];
 
 }

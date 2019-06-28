@@ -17,12 +17,16 @@ export class ProductPageComponent implements OnInit {
   productArray: Array<object> = [];
   cartArray: Array<object> = [];
   quantValue = 1;
+  productRating: Array<any> = [];
+  ClosePopup() {
+    document.querySelector('.cartPopup').className = 'cartPopup';
+  }
 
   quantityFunction(value) {
     this.quantValue = value;
   }
 
-  isItemInCart(itemName,cartArray) {
+  isItemInCart(itemName, cartArray) {
     if (cartArray.length > 0) {
 // tslint:disable-next-line: prefer-for-of
     for (let i = 0; i < cartArray.length; i++) {
@@ -40,7 +44,6 @@ export class ProductPageComponent implements OnInit {
     const cartArray = JSON.parse(localStorage.getItem('cart')) || [];
     const cartObject = {addToCartItem, quantValue};
     const isExist = this.isItemInCart(addToCartItem.name, cartArray);
-    console.log(isExist);
 // tslint:disable-next-line: radix
     quantValue = parseInt(quantValue);
     if (!isExist) {
@@ -48,19 +51,20 @@ export class ProductPageComponent implements OnInit {
     } else {
 // tslint:disable-next-line: prefer-for-of
       for (let i = 0; i < cartArray.length; i++) {
-        console.log('in for');
 // tslint:disable-next-line: radix
-        console.log(typeof(cartArray[i].quantValue));
         if (cartArray[i].addToCartItem.name === addToCartItem.name) {
-          console.log('exist in loop');
           quantValue = parseInt(quantValue);
           cartArray[i].quantValue += quantValue;
           break;
           }
       }
     }
-    console.log(cartArray);
-    localStorage.setItem('cart', JSON.stringify(cartArray));
+    try {
+      localStorage.setItem('cart', JSON.stringify(cartArray));
+      document.querySelector('.cartPopup').className = 'cartPopup show';
+    } catch (error) {
+        console.error(error);
+      }
   }
 
   constructor(private ProductsDataService: ProductsDataService, private route: ActivatedRoute, private router: Router) {   }
@@ -72,7 +76,6 @@ export class ProductPageComponent implements OnInit {
     });
   }
     showProduct = () => {
-      console.log('itemName: ' + this.itemName);
       if (this.itemName != null) {
     this.ProductsDataService.prodData().then( (response) => {
       this.searchResults = response;
@@ -92,8 +95,10 @@ export class ProductPageComponent implements OnInit {
       allProducts.forEach(el => {
         if (el.name === this.itemName) {
         this.productArray.push(el);
+        this.productRating.length = el.rating;
         }
       });
+
 
 }, (error) => {
   console.log('Error: ' + error.statusText);
