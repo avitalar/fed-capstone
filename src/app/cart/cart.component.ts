@@ -26,17 +26,20 @@ export class CartComponent implements OnInit {
     this.cartArray = cartArray;
   }
   DeleteObject(objectToDelete) {
+  const message = 'Are you sure you want to delete ' + objectToDelete.name;
+  const result = window.confirm(message);
+  if (result) {
     const cartArray = JSON.parse(localStorage.getItem('cart')) || [];
 // tslint:disable-next-line: prefer-for-of
     for (let i = 0; i < cartArray.length; i++) {
       if (cartArray[i].addToCartItem.name === objectToDelete.name) {
-        cartArray.splice(cartArray[i],1);
+        cartArray.splice(cartArray[i], 1);
         break;
       }
     }
     localStorage.setItem('cart', JSON.stringify(cartArray));
     this.cartArray = cartArray;
-
+  }
   }
 
   CalcSubTotal() {
@@ -46,24 +49,29 @@ export class CartComponent implements OnInit {
     for (let i = 0; i < cartArray.length; i++) {
       calcvar += cartArray[i].addToCartItem.price * cartArray[i].quantValue;
     }
-    return calcvar;
+    return parseFloat(calcvar.toFixed(2));
+
+
   }
-  calcTaxes(){
+  calcTaxes() {
     let subtotal = this.CalcSubTotal();
     subtotal = subtotal * 17 / 100;
-    return parseInt(subtotal.toFixed(2));
+    return parseFloat(subtotal.toFixed(2));
   }
-  cartTotalFunc(){
+  cartTotalFunc() {
     let CartTotalSum: number;
     CartTotalSum = this.CalcSubTotal() + this.calcTaxes() + this.ShippingValue;
-    return CartTotalSum.toFixed(2);
+    return parseFloat(CartTotalSum.toFixed(2));
+
   }
-  Checkout(){
+  Checkout() {
     alert('All done :)');
   }
   constructor() { }
   calcLineItem(price: number, quantity: number) {
-    return price * quantity;
+    const lineTotal =  price * quantity;
+// tslint:disable-next-line: radix
+    return parseFloat(lineTotal.toFixed(2));
   }
   ngOnInit() {
     this.cartArray = JSON.parse(localStorage.getItem('cart'));

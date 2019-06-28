@@ -2,26 +2,28 @@
     <div *ngIf="!submitted" class="formWrapper container-fluid">
         <div class="container"><h3>Contact us</h3></div>
       <div class="container">
-        <form  class="row">
+            <form class="row" (ngSubmit)="onSubmit()" #Form="ngForm">
+
         <div  class="col-md-3 form-group">
           <label for="name">Name</label>
-          <input type="text" class="form-control" id="name" required>
+          <input  [(ngModel)]="model.name" name="name" type="text" class="form-control" id="name" required>
         </div>
         <div class="col-md-3 form-group">
             <label for="email">Email Address</label>
-            <input type="email" class="form-control" id="email" required>
+            <input  [(ngModel)]="model.email" name="email"  type="email" class="form-control" id="email" required>
           </div>
         <div class="col-md-3 form-group">
             <label for="message">Your message</label>
-            <input type="text" class="form-control" id="message" required>
+            <input [(ngModel)]="model.message" name="message" type="text" class="form-control" id="message" required>
           </div>     
          <div class="col-md-3 form-group"> 
-        <button type="submit" (click)="onSubmit($event)" class="bg-dark btn btn-success">Submit</button>
+        <button type="submit" class="bg-dark btn btn-success" [disabled]="!Form.form.valid">Submit</button>
+
          </div>  
       </form>
     </div>
     </div>
-    <div *ngIf="submitted"><h3>Thank you for contacting us. we will be in touch soon :)</h3></div>
+    <div class="container" *ngIf="submitted"><h3 style="text-align: center;">Thank you for contacting us. we will be in touch soon :)</h3></div>
       
    <div class="container-fluid footerInfo"> 
       <div class="container">

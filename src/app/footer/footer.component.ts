@@ -8,13 +8,17 @@ import {Form} from '../form';
 })
 export class FooterComponent implements OnInit {
 
-model = new Form(1, 'name', 'email', 'message');
-
+model = new Form("","","");
+modelKeys = Object.keys(this.model);
+sendForm(){
+  console.log('success'); 
+}
 submitted = false;
 
-onSubmit(event: Event) {
-  event.preventDefault();
-  this.submitted = true; }
+  onSubmit() {
+    this.submitted = true; }
+
+
   constructor() { }
 
   ngOnInit() {

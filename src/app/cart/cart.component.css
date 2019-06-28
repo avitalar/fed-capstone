@@ -1,0 +1,23 @@
+.msg {
+    text-align: center;
+    margin: 20px 0 100px;
+}
+.pageTitle {
+    text-align: center;
+    margin: 30px;
+}
+input.qntInput {
+    text-indent: 5px;
+    width: 50px;
+    margin-right: 20px;
+}
+button.CheckoutBtn {
+    margin: 20px auto;
+    display: block;
+    background-color: #e3dfdf;
+    border: 0;
+    padding: 3px 15px;
+    font-size: 20px;
+    text-transform: uppercase;
+    border-radius: 5px;
+}

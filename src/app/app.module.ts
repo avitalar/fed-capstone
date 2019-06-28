@@ -18,6 +18,8 @@ import { FilterStockedPipe } from './filter-stocked.pipe';
 import { OrderByPricePipe } from './order-by-price.pipe';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { FormsModule } from '@angular/forms';
+
 
 
 const appRoutes: Routes = [
@@ -68,7 +70,8 @@ const appRoutes: Routes = [
     RouterModule.forRoot(
       appRoutes
     ),
-    NgbModule
+    NgbModule,
+    FormsModule
   ],
   providers: [ProductsDataService,NgxImageCompressService],
   bootstrap: [AppComponent]
