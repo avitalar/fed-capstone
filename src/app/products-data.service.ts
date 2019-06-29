@@ -11,6 +11,7 @@ export class ProductsDataService {
 
   prodData = (): Promise<ProdApi> => {
     const promise = new Promise<ProdApi>((resolve, reject) => {
+      /* rubric81 | Data was accessed using the Azure Web API and not a local file */
             this.http.get('https://webmppcapstone.blob.core.windows.net/data/itemsdata.json')
             .toPromise()
             .then( (response) => {

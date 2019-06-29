@@ -1,3 +1,5 @@
+/* rubric79 | CSS used for site styling. No inline CSS permitted and no styling
+of HTML elements directly. */
 .sideMenu {
     background-color: #eee;
     margin-top: 20px;
@@ -80,7 +82,19 @@ cursor: pointer;
     background-color: #4b4848;
     color: #ffffff;
 }
+.filterBtns {
+    text-align: right;
+}
 .subcategoryBtn.selected {
     color: #170b62;
     font-weight: 700;
+}
+.selectedCategory {
+    padding-top: 12px;
+    font-size: 24px;
+    font-weight: 600;
+    color: #8d053e;
+}
+.controlBar {
+    text-align: center;
 }

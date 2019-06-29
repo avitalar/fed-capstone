@@ -15,7 +15,6 @@ export class AppComponent implements OnInit {
   constructor(private ProductsDataService: ProductsDataService) {
 
   }
-  title = 'app is functional!';
   ngOnInit() {
   }
 }

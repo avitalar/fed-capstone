@@ -1,0 +1,57 @@
+
+           <div class="container ">
+             <!-- rubric58 | The user should see description that shows an email and phone number for the contacting the business-->
+             <div class="contactInfo">
+             <h3>Contact information</h3>
+            <table>
+              <tr>
+                <td><h5>Email address:</h5></td>
+                <td><h6>info@grocerycloud.com</h6></td>
+              </tr>
+              <tr>
+                  <td><h5>Office number:</h5></td>
+                  <td><h6>000-000-0000-000</h6></td>
+              </tr>
+            </table>         
+          </div>
+        </div>
+
+   <div *ngIf="!submitted" class="formWrapper container-fluid">
+        <div class="container"><h3>Contact us</h3></div>
+      <div class="container">
+        <!-- rubric57 | The user should see a form with text input fields for name and email, a dropdown list for subject, and a text area for a message. These fields should have placeholders to show what they represent-->
+            <form class="row" (ngSubmit)="onSubmit()" #Form="ngForm">
+
+        <div  class="col-md-4 form-group">
+          <label for="name">Name</label>
+          <input  [(ngModel)]="model.name" name="name" type="text" class="form-control" id="name" #name="ngModel" required>
+          
+        </div>
+        <div class="col-md-4 form-group">
+            <label for="email">Email Address</label>
+            <input  [(ngModel)]="model.email" name="email"  type="email" class="form-control" id="email" required>
+          </div>
+          <div class="col-md-4 form-group">
+              <label for="subject">Choose subject</label>
+              <select [(ngModel)]="model.subject" name="subject"  type="select" class="form-control" id="subject" required>
+                <option value="technical issue">technical issue</option>
+                <option value="product query">product query</option>
+                <option value="customer service">customer service</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+        <div class="col-md-6 form-group">
+            <label for="message">Your message</label>
+            <input [(ngModel)]="model.message" name="message" type="textarea" class="form-control" id="message" required>
+          </div>     
+         <div class="col-md-3 form-group"> 
+           <!-- rubric59 | The user should see a button labeled "send" -->
+        <button type="submit" class="bg-dark btn btn-success" [disabled]="!Form.form.valid">SEND</button>
+
+         </div>  
+      </form>
+    </div>
+    </div>     
+    <div *ngIf="submitted" class="align-center container-fluid">
+      <h1>Thank you</h1>
+  </div>

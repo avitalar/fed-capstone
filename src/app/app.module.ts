@@ -19,31 +19,49 @@ import { OrderByPricePipe } from './order-by-price.pipe';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { FormsModule } from '@angular/forms';
-
-
+import { ContactComponent } from './contact/contact.component';
+import { AboutComponent } from './about/about.component';
 
 const appRoutes: Routes = [
+  /* rubric13 | The home page is accessible at http://localhost:8080/# */
   { path: '',
     component: HomepageComponent
   },
-  { path: 'shop',
+  /* rubric34 | The shopping page is accessible at http://localhost:8080/#/shopping */
+  { path: 'shopping',
     component: ShopComponent,
     data: {
       title: 'Shop page'
     }
   },
+  /* rubric46 | The product page is accessible at http://localhost:8080/#/product?name=productname */
   { path: 'product/:productName',
   component: ProductPageComponent,
   data: {
     title: 'Product page'
   }
   },
+  /* rubric56 | The cart page is accessible at http://localhost:8080/#/cart */
   { path: 'cart',
     component: CartComponent,
     data: {
       title: 'cart page'
     }
   },
+  /* rubric62 | The contact page is accessible at http://localhost:8080/#/contact */
+  { path: 'contact',
+    component: ContactComponent,
+    data: {
+      title: 'contact page'
+    }
+  },
+   /* rubric64 | The about page is accessible at http://localhost:8080/#/about */
+   { path: 'about',
+   component: AboutComponent,
+   data: {
+     title: 'about page'
+   }
+ },
   { path: '**', component: NotFoundComponentComponent }
 ];
 
@@ -60,7 +78,9 @@ const appRoutes: Routes = [
     FilterStockedPipe,
     OrderByPricePipe,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    ContactComponent,
+    AboutComponent
 
   ],
   imports: [

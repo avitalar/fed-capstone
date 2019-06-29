@@ -3,15 +3,31 @@
       <div class="col-md-12 pageTitle">
         <h1>Our Products</h1>
       </div>
-        <div class="col-md-12 offset-9 filterBtns">      
+      <!-- rubric14 | The user shall see a controls bar -->
+      <div class="controlBar row col-md-12 ">
+        <div class="col-md-3 offset-5">
+          <!-- rubric15 | The user shall see a section in the controls bar that displays the selected category name-->
+          <!-- rubric27 | Clicking on a subcategory should change the name of the selected category in the controls bar --> 
+          <div class="selectedCategory">{{selectedCategory}}</div>
+            <!-- <span *ngIf="selectedCategoryLength;">Total of subcategory: {{selectedCategoryLength}}</span> -->
+        </div>
+        <div class="col-md-4 filterBtns">
+          <!-- rubric17  | The user shall see a toggle switch labeled “In Stock Only” in the controls bar -->
+          <!-- rubric29  | If the “In Stock Only” toggle is checked, only items that are in stock should be shown in the products grid. -->
             <button id="ShowOnlyStock" (click)="ShowOnlyStock($event)">Show only stocked</button>
+            <!-- rubric18 | The user shall see a dropdown list labeled “Sort By” that has the following options: (None, Price, Alphabetical, Rating) in the controls bar -->
+            <!-- rubric33 | Changing the selected sorting method should reorder the products in the grid -->
             <button id="SortPrice" (click)="SortPriceFunc($event)">Order By Price</button></div>
+          </div>
+
       <div *ngIf="searchResults; else loaderBlock;" class="sideMenu col-md-3">
+        <!--rubric19 | The user shall see a category menu that displays all of the available shopping categories-->
           <div  class="categoriesMenu">
           <h3>Product Categories</h3>
           <a class="showAllCat" (click)="subcategoryFilterFunc('all',$event);">Show All Products</a>
         <div  *ngFor="let result of searchResults; index as i;">
-          <div>
+          <div><!-- rubric25 | Clicking on a category name in the category menu should toggle a
+            dropdown of the available subcategories within that category -->
               <button type="button" class="categoriesBtn" (click)="isCollapsed[i] = !isCollapsed[i]"
             [attr.aria-expanded]="!isCollapsed[i]" [attr.aria-controls]="'collapse'+i">
             {{result.category}}
@@ -20,7 +36,9 @@
           <div *ngIf="subcategory.items.length > 0;" [attr.id]="'collapse'+i" [ngbCollapse]="!isCollapsed[i]">
               <div>
                 <div>
-                    <a class="subcategoryBtn" (click)="subcategoryFilterFunc(subcategory.name,$event);">{{subcategory.name}}</a>
+                  <!-- rubric26 | Clicking on a subcategory should repopulate the grid of products
+with items from the subcategory that was just clicked.   -->
+                    <a class="subcategoryBtn" (click)="subcategoryFilterFunc(subcategory.name,$event,subcategory.items.length);">{{subcategory.name}}</a>
                   </div>
               </div>
             </div>
@@ -34,24 +52,28 @@
           <button class="filterBtn" type="button" *ngFor="let price of pricesFiltreArray; index as i;" (click)="filterPriceFunc(price,$event)" >{{price.title}}</button>
         </div>
       </div>
-      
-      <ng-template #loaderBlock><img src="../../assets/200.gif"></ng-template> 
+
+      <ng-template #loaderBlock><img src="../../assets/200.gif"></ng-template>
       <div class="products col-md-9">
-<div *ngIf="allProducts; else elseBlock" class="row">                
-    
+        <!-- rubric20 | The user shall see a grid that is populated with the products of the selected category-->
+<div *ngIf="allProducts;else elseBlock" class="row productDisplay">
   <div class="col-md-4" [ngStyle]="{'border-bottom': '1px solid rgba(193, 186, 186, 0.2)'}" *ngFor="let product of allProducts | orderByPrice:orderByPriceBool | filterStocked:filterBool | subcategoryFilter:filterString | priceFilter:filterPrice;">
-    <div class="item">       
-   
-                <div class="itemImg" [ngStyle]="{'background-image':'url('+product.imagelink+')'}" > 
-                <span [ngStyle]="{'color' : (product.stock < 5) ? 'red' : ''}" class="stockQuan">{{product.stock}} left</span> 
-                </div>
-                <h4>{{product.name}}</h4>
+    <div class="item">
+      <!-- rubric23 | Each grid cell shall have an image of the product displayed-->
+      <!-- rubric31 | If the user clicks on a product image within a grid cell, they should be taken to a product page that is populated with the details of the clicked product-->
+      <a [routerLink]="['/product/' + product.name]"> <div class="itemImg" [ngStyle]="{'background-image':'url('+product.imagelink+')'}" >
+                <span [ngStyle]="{'color' : (product.stock < 5) ? 'red' : ''}" class="stockQuan">{{product.stock}} left</span>
+                </div></a>
+                <!-- rubric21 | Each grid cell shall have the name of the product displayed -->
+                <!-- rubric32 | If the user clicks on a product name within a grid cell, they should be taken to a product page that is populated with the details of the clicked product -->
+                <a [routerLink]="['/product/' + product.name]"> <h4>{{product.name}}</h4></a>
+                <!-- rubric22 | Each grid cell shall have the price of the product displayed -->
                 <span>{{product.price}}$</span><br>
                 <a class="ViewProductBtn" [routerLink]="['/product/' + product.name]">View Product</a>
           </div>
-        </div> 
-</div>  
-    <ng-template #elseBlock><img src="../../assets/200.gif"></ng-template> 
+        </div>
+</div>
+    <ng-template #elseBlock><img src="../../assets/200.gif"></ng-template>
   </div>
 </div>
 </div>

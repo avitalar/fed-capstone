@@ -1,36 +1,16 @@
-
-    <div *ngIf="!submitted" class="formWrapper container-fluid">
-        <div class="container"><h3>Contact us</h3></div>
-      <div class="container">
-            <form class="row" (ngSubmit)="onSubmit()" #Form="ngForm">
-
-        <div  class="col-md-3 form-group">
-          <label for="name">Name</label>
-          <input  [(ngModel)]="model.name" name="name" type="text" class="form-control" id="name" required>
-        </div>
-        <div class="col-md-3 form-group">
-            <label for="email">Email Address</label>
-            <input  [(ngModel)]="model.email" name="email"  type="email" class="form-control" id="email" required>
-          </div>
-        <div class="col-md-3 form-group">
-            <label for="message">Your message</label>
-            <input [(ngModel)]="model.message" name="message" type="text" class="form-control" id="message" required>
-          </div>     
-         <div class="col-md-3 form-group"> 
-        <button type="submit" class="bg-dark btn btn-success" [disabled]="!Form.form.valid">Submit</button>
-
-         </div>  
-      </form>
-    </div>
-    </div>
-    <div class="container" *ngIf="submitted"><h3 style="text-align: center;">Thank you for contacting us. we will be in touch soon :)</h3></div>
-      
+ 
    <div class="container-fluid footerInfo"> 
       <div class="container">
     <div class="row">
-      <div class="col-md-3">@Grocery Cloud 2019</div>
-      <div class="col-md-2"><h4>About us:</h4></div>
-    <div class="col-md-4"><p>We are a fictional Grocery store made for learning purposes.. </p></div>
+      <!-- rubric73 | User shall see a link to the home page  -->
+      <!-- rubric76 | Clicking on the home page link should take the user to the home page -->
+      <div class="col-md-3"><a href="/">@Grocery Cloud 2019</a></div>
+      <!-- rubric74 | User shall see a link to the about page  -->
+      <!-- rubric77 | Clicking on the about page link should take the user to the about page -->
+      <div class="col-md-3"><a href="/about">About us</a></div>
+       <!-- rubric75 | User shall see a link to the Contact page  -->
+      <!-- rubric78 | Clicking on the Contact page link should take the user to the Contact page -->
+      <div class="col-md-3"><a href="/contact">Contact us</a></div>
     <div class="col-md-3"><a href="mailto:info@grocerycloud.com">info@grocerycloud.com</a></div>
   </div> 
 </div>

@@ -2,20 +2,35 @@
 <div class="row productWrapper">
   <div class="col-md-8 offset-2 row">
       <div class="col-md-5">
+        <!-- rubric36 | The user should an image of the selected product-->
           <img width="100%" [src]="productArray[0].imagelink" /> </div>
     <div class="productInfo col-md-7">
+      <!-- rubric35 | The user should the name of the selected product-->
+            <!-- rubric80 | Used jQuery or Angular for data binding -->
         <h1>{{productArray[0].name}}</h1>
+        <!-- rubric37 | The user should see the rating of the selected product -->
         <div class="rateWrapper"><img *ngFor="let rate of productRating" class="ratingStar" src="../../assets/star.png"></div>
-  <h2>{{productArray[0].price}}$</h2>
+  <!-- rubric39 | The user should see the price of the selected product-->
+        <!-- rubric80 | Used jQuery or Angular for data binding -->
+        <h2>{{productArray[0].price}}$</h2>
+        <!-- rubric40 | The user should see a description of the selected product -->
+              <!-- rubric80 | Used jQuery or Angular for data binding -->
   <h5>{{productArray[0].description}}</h5> 
+  <!-- rubric38 | The user should see the number of items in stock of the selected product -->
+        <!-- rubric80 | Used jQuery or Angular for data binding -->
   <p *ngIf="productArray[0].stock > 0;">{{productArray[0].stock}} in stock</p>
   <p class="outOfStock" *ngIf="productArray[0].stock == 0;">OUT OF STOCK</p>
 
   <div class="CartButtons">
+    <!-- rubric42 | The user should see an input field labeled "Qty"-->
   <input type="number" min="1" max="100" (input)="quantityFunction($event.target.value)" value="1"/>
+  <!-- rubric41 | The user should see a button labeled "add" -->
+  <!-- rubric44 | Clicking the “Add” button should add the number of units specified in the “Qty” input field of the selected product to the shopping cart -->
     <button [disabled]="productArray[0].stock == 0" (click)="addToCart(productArray[0],quantValue)">Add to Cart</button>
 </div>
-<a class="backToShop" href="/shop">Back to Shop</a>
+<!-- rubric43 | The user should see a button labeled "Back"-->
+<!-- rubric45 | Clicking the “Back” button should take the user back to where they came from, whether it was the Shopping page or the Product Page. -->
+<a class="backToShop" href="/shopping">Back to Shop</a>
 
 </div>
 </div>
@@ -23,6 +38,7 @@
 <div class="cartPopup">
   <div class="inner">
     <h1>Success!</h1>
+          <!-- rubric80 | Used jQuery or Angular for data binding -->
     <h2>{{productArray[0].name}} Was added to the Cart</h2>
     <a href="/cart">Go to Cart</a>
     <span class="closeBtn" (click)="ClosePopup()">X</span>

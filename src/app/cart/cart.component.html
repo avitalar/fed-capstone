@@ -6,6 +6,7 @@
   
 <div *ngIf="cartArray.length > 0; else elseBlockCart;" class="container">
 <div >
+  <!-- rubric47 | The user should a table displaying the product image, name, unit price, quantity as an input field, total cost, and a remove button for each product in the shopping cart. -->
   <table class="table">
     <thead>
         <th scope="col">Product Name </th>
@@ -26,14 +27,16 @@
 <td><input ng-model="qntInput" class="qntInput" type="number" min="1" max="100" (input)="quantityFunction($event.target.value)" value="{{cartItem.quantValue}}"/>
   <button (click)="UpdateCart(cartItem.addToCartItem)" >Update Cart</button>
 </td>
+<!-- rubric55 | The cost column in the table should update if the quantity input field is changed-->
 <td>{{calcLineItem(cartItem.quantValue,cartItem.addToCartItem.price)}}$</td>
+<!-- rubric54 | The remove button should remove an item from the shopping cart -->
 <th><button (click)="DeleteObject(cartItem.addToCartItem)" >Delete</button> </th>
 
 
       </tr>
     </table>
     </div>
-
+<!-- rubric49 | The user should see a section showing the subtotal cost of all the items in the shopping cart, the shipping cost, the tax cost, and a total cost of all of the items in the shipping cost. -->
 <div class="cartTotal col-md-4 offset-4">
   <table class="table">
     <tr>
@@ -50,10 +53,12 @@
       </tr>
     <tr>
         <td scope="col">Cart Total:</td>
+        <!--rubric53 | The cost details section should update if any items are removed from the shopping cart of if any of the item quantities are updated -->
         <td>{{cartTotalFunc()}}$</td>
       </tr>
   </table>
 </div>
+<!-- rubric50 | The user should see a checkout button -->
 <button class="CheckoutBtn" (click)="Checkout()">Checkout</button>
 
 
@@ -64,6 +69,6 @@
   <div class="container">
       <div class="msg">cart is epmty..<br>
       Add some products first.<br>
-    <a href="/shop">Go to our Shop</a></div>
+    <a href="/shopping">Go to our Shop</a></div>
   </div>
 </ng-template>

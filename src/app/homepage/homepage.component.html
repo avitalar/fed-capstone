@@ -3,8 +3,11 @@
       <div class="row">
         <div class="header_text">
           <h1>Grocery Cloud</h1>
-          <h2>Welcome to our online Grocerys store!</h2>        
-        <a class="shopNowBtn" href="/shop">SHOP NOW</a>
+          <!-- rubric04 | The user should see some text welcoming them to the website rubric04 1-->
+          <h2>Welcome to our online Grocerys store!</h2> 
+          <!-- rubric05 | The user should see a button labeled "shop all" --> 
+          <!-- rubric12 | If the user clicks on the “Shop All” button, the user should be taken to the shopping page -->      
+        <a class="shopNowBtn" href="/shopping">SHOP All</a>
       </div>
       </div>
     </div>
@@ -18,22 +21,31 @@
       <h5>Here you can find our top rated products only at maximum price of 3$</h5>
     </div>
   </div>
-  <owl-carousel
-[options]="{items: 5, dots: true, nav: true}"
-[items]="featuredItem"
+<!-- rubric01 | The user should see a product carousel that contains at least 3 slides of products, with each slide having between 1 and 4 product images. -->
+<!-- rubric02 | The user should see a button that resembles a left arrow key to the left of the product carousel | owl-carousel [options] nav: true-->
+<!-- rubric03 | The user should see a button that resembles a right arrow key to the right of the product carousel |  owl-carousel [options] nav: true--->
+<!-- rubric06 | The user should see a toggle switch labeled "Toggle Slide Show" |  owl-carousel [options] dots: true-->
+<!-- rubric07 | Clicking on the right arrow should move the product carousel one slide forward--> 
+<!-- rubric08 | Clicking on the left arrow should move the product carousel one slide back -->
+<!-- rubric11 | Whenever the product carousel changes it slide, it should do in an animated way-->
+<owl-carousel [options]="{items: 5, dots: true, nav: true}" [items]="featuredItem"
 [carouselClasses]="['owl-theme']">
 <div class="item" *ngFor="let featured of featuredItem;let i = index">
     <h5>{{featured.name}}</h5>
 
 <div class="featuredImgWrapper">
-  <img [src]="featured.imagelink" />
-<!-- <div class="featuredImgWrapper"><img (load)="dosomething($event)" [src]="featured.imagelink" /> -->
-  <div class="overlay">
-    <p>{{featured.description}}</p>  
-    <a class="productLink" [routerLink]="['/product/' + featured.name]">View Product</a>
+     <a class="productLink" [routerLink]="['/product/' + featured.name]"> <img [src]="featured.imagelink" /></a>
 
+<!-- rubric09 | If the user clicks on a product image, they should be taken to a product page that is populated with the details of the clicked product--> 
+ <a class="overlay" [routerLink]="['/product/' + featured.name]"> 
+    <div class="">
+      <!-- rubric80 | Used jQuery or Angular for data binding -->
+     <p>{{featured.description}}</p>  
+    <a class="productLink" [routerLink]="['/product/' + featured.name]">View Product</a>
   </div>
+</a>
  </div>
+       <!-- rubric80 | Used jQuery or Angular for data binding -->
     <p>price is: ${{featured.price}}</p>
 </div>
 </owl-carousel>

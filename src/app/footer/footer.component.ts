@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {Form} from '../form';
 
 @Component({
   selector: 'app-footer',
@@ -8,15 +7,7 @@ import {Form} from '../form';
 })
 export class FooterComponent implements OnInit {
 
-model = new Form("","","");
-modelKeys = Object.keys(this.model);
-sendForm(){
-  console.log('success'); 
-}
-submitted = false;
 
-  onSubmit() {
-    this.submitted = true; }
 
 
   constructor() { }

@@ -20,6 +20,8 @@ export class ShopComponent implements OnInit {
   subcategoriesArray: Array<object> = [];
 // tslint:disable-next-line: max-line-length
   pricesFiltreArray: Array<object> = [];
+  selectedCategory = 'Showing all products';
+  selectedCategoryLength;
   public isCollapsed: boolean[] = [];
   orderByPriceBool = false;
   filterBool = {byStock: false, isByPrice: this.orderByPriceBool};
@@ -62,16 +64,17 @@ SortPriceFunc(event) {
   }
 }
 
-  subcategoryFilterFunc = (name: string, event) => {
+  subcategoryFilterFunc = (name: string, event,subLength) => {
     if (name === 'all') {
-      this.filterString = name;
+      this.selectedCategory = 'Showing all products';
+    } else {
+      this.selectedCategory = name;
     }
-    this.filterString = name;
-    this.subcategoriesArray.forEach(el => {
-      if (el[0] === name && el[1] > 0) {
-      } else if (el[1] === 0) {
-      }
-    });
+    if (subLength){
+      this.selectedCategoryLength = subLength;
+    } else {
+      this.selectedCategoryLength = null;
+    }
     this.filterString = name;
     const allBtns = document.querySelectorAll('.subcategoryBtn');
     allBtns.forEach(el => {
