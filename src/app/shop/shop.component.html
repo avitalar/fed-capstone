@@ -8,7 +8,7 @@
         <div class="col-md-3 offset-5">
           <!-- rubric15 | The user shall see a section in the controls bar that displays the selected category name-->
           <!-- rubric27 | Clicking on a subcategory should change the name of the selected category in the controls bar --> 
-          <div class="selectedCategory">{{selectedCategory}}</div>
+          <div *ngIf="selectedCategory;" class="selectedCategory">{{selectedCategory}}</div>
             <!-- <span *ngIf="selectedCategoryLength;">Total of subcategory: {{selectedCategoryLength}}</span> -->
         </div>
         <div class="col-md-4 filterBtns">
@@ -70,11 +70,23 @@ with items from the subcategory that was just clicked.   -->
                 <!-- rubric22 | Each grid cell shall have the price of the product displayed -->
                 <span>{{product.price}}$</span><br>
                 <a class="ViewProductBtn" [routerLink]="['/product/' + product.name]">View Product</a>
+                <!-- rubric24 | Each grid cell shall have a button labeled "add" -->
+                <button (click)="addToCart(product,1)">Add to Cart</button>
+                <div class="cartPopup">
+                    <div class="inner">
+                      <h1>Success!</h1>
+                            <!-- rubric80 | Used jQuery or Angular for data binding -->
+                      <h2>Successfully added to the Cart</h2>
+                      <a href="/cart">Go to Cart</a>
+                      <span class="closeBtn" (click)="ClosePopup()">X</span>
+                    </div>
+                  </div>
           </div>
         </div>
 </div>
     <ng-template #elseBlock><img src="../../assets/200.gif"></ng-template>
   </div>
 </div>
+
 </div>
 

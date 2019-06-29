@@ -25,7 +25,50 @@ export class ShopComponent implements OnInit {
   public isCollapsed: boolean[] = [];
   orderByPriceBool = false;
   filterBool = {byStock: false, isByPrice: this.orderByPriceBool};
+  ClosePopup() {
+    document.querySelector('.cartPopup').className = 'cartPopup';
+  }
 
+  isItemInCart(itemName, cartArray) {
+    if (cartArray.length > 0) {
+// tslint:disable-next-line: prefer-for-of
+    for (let i = 0; i < cartArray.length; i++) {
+      if (cartArray[i].addToCartItem.name === itemName) {
+            return true;
+        }
+    }
+    return false;
+  } else {
+    return false;
+  }
+  }
+
+  addToCart(addToCartItem: any, quantValue: any) {
+    const cartArray = JSON.parse(localStorage.getItem('cart')) || [];
+    const cartObject = {addToCartItem, quantValue};
+    const isExist = this.isItemInCart(addToCartItem.name, cartArray);
+// tslint:disable-next-line: radix
+    quantValue = parseInt(quantValue);
+    if (!isExist) {
+      cartArray.push(cartObject);
+    } else {
+// tslint:disable-next-line: prefer-for-of
+      for (let i = 0; i < cartArray.length; i++) {
+// tslint:disable-next-line: radix
+        if (cartArray[i].addToCartItem.name === addToCartItem.name) {
+          quantValue = parseInt(quantValue);
+          cartArray[i].quantValue += quantValue;
+          break;
+          }
+      }
+    }
+    try {
+      localStorage.setItem('cart', JSON.stringify(cartArray));
+      document.querySelector('.cartPopup').className = 'cartPopup show';
+    } catch (error) {
+        console.error(error);
+      }
+  }
 
   filterPriceFunc(searchValue: string, event ) {
     const childrenArr = event.target.parentElement.children;
